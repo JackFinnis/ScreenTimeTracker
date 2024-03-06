@@ -8,21 +8,58 @@
 
 /* Begin PBXBuildFile section */
 		04CC78172B96AFED007FD5D1 /* ScreenTimeTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78162B96AFED007FD5D1 /* ScreenTimeTrackerApp.swift */; };
-		04CC78192B96AFED007FD5D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78182B96AFED007FD5D1 /* ContentView.swift */; };
 		04CC781B2B96AFEE007FD5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */; };
-		04CC781E2B96AFEE007FD5D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CC781D2B96AFEE007FD5D1 /* Preview Assets.xcassets */; };
+		04CC782B2B96B150007FD5D1 /* ScreenTimeReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC782A2B96B150007FD5D1 /* ScreenTimeReport.swift */; };
+		04CC78342B96B150007FD5D1 /* ScreenTimeReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 04CC78282B96B150007FD5D1 /* ScreenTimeReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		04CC783A2B96B167007FD5D1 /* DeviceActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */; };
+		04CC783B2B96B1A7007FD5D1 /* DeviceActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04CC78322B96B150007FD5D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04CC780B2B96AFED007FD5D1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04CC78272B96B150007FD5D1;
+			remoteInfo = ScreenTimeReport;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		04CC78382B96B151007FD5D1 /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+				04CC78342B96B150007FD5D1 /* ScreenTimeReport.appex in Embed ExtensionKit Extensions */,
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		04CC78132B96AFED007FD5D1 /* ScreenTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CC78162B96AFED007FD5D1 /* ScreenTimeTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeTrackerApp.swift; sourceTree = "<group>"; };
-		04CC78182B96AFED007FD5D1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		04CC781D2B96AFEE007FD5D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		04CC78282B96B150007FD5D1 /* ScreenTimeReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = ScreenTimeReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CC782A2B96B150007FD5D1 /* ScreenTimeReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeReport.swift; sourceTree = "<group>"; };
+		04CC78302B96B150007FD5D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04CC78312B96B150007FD5D1 /* ScreenTimeReport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenTimeReport.entitlements; sourceTree = "<group>"; };
+		04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityReport.swift; sourceTree = "<group>"; };
+		04CC783C2B98893D007FD5D1 /* ScreenTimeTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenTimeTracker.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		04CC78102B96AFED007FD5D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04CC78252B96B150007FD5D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -36,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				04CC78152B96AFED007FD5D1 /* ScreenTimeTracker */,
+				04CC78292B96B150007FD5D1 /* ScreenTimeReport */,
 				04CC78142B96AFED007FD5D1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				04CC78132B96AFED007FD5D1 /* ScreenTimeTracker.app */,
+				04CC78282B96B150007FD5D1 /* ScreenTimeReport.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -52,19 +91,21 @@
 			isa = PBXGroup;
 			children = (
 				04CC78162B96AFED007FD5D1 /* ScreenTimeTrackerApp.swift */,
-				04CC78182B96AFED007FD5D1 /* ContentView.swift */,
 				04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */,
-				04CC781C2B96AFEE007FD5D1 /* Preview Content */,
+				04CC783C2B98893D007FD5D1 /* ScreenTimeTracker.entitlements */,
 			);
 			path = ScreenTimeTracker;
 			sourceTree = "<group>";
 		};
-		04CC781C2B96AFEE007FD5D1 /* Preview Content */ = {
+		04CC78292B96B150007FD5D1 /* ScreenTimeReport */ = {
 			isa = PBXGroup;
 			children = (
-				04CC781D2B96AFEE007FD5D1 /* Preview Assets.xcassets */,
+				04CC782A2B96B150007FD5D1 /* ScreenTimeReport.swift */,
+				04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */,
+				04CC78302B96B150007FD5D1 /* Info.plist */,
+				04CC78312B96B150007FD5D1 /* ScreenTimeReport.entitlements */,
 			);
-			path = "Preview Content";
+			path = ScreenTimeReport;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,15 +118,34 @@
 				04CC780F2B96AFED007FD5D1 /* Sources */,
 				04CC78102B96AFED007FD5D1 /* Frameworks */,
 				04CC78112B96AFED007FD5D1 /* Resources */,
+				04CC78382B96B151007FD5D1 /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				04CC78332B96B150007FD5D1 /* PBXTargetDependency */,
 			);
 			name = ScreenTimeTracker;
 			productName = ScreenTimeTracker;
 			productReference = 04CC78132B96AFED007FD5D1 /* ScreenTimeTracker.app */;
 			productType = "com.apple.product-type.application";
+		};
+		04CC78272B96B150007FD5D1 /* ScreenTimeReport */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04CC78352B96B151007FD5D1 /* Build configuration list for PBXNativeTarget "ScreenTimeReport" */;
+			buildPhases = (
+				04CC78242B96B150007FD5D1 /* Sources */,
+				04CC78252B96B150007FD5D1 /* Frameworks */,
+				04CC78262B96B150007FD5D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScreenTimeReport;
+			productName = ScreenTimeReport;
+			productReference = 04CC78282B96B150007FD5D1 /* ScreenTimeReport.appex */;
+			productType = "com.apple.product-type.extensionkit-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -98,6 +158,9 @@
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					04CC78122B96AFED007FD5D1 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					04CC78272B96B150007FD5D1 = {
 						CreatedOnToolsVersion = 15.2;
 					};
 				};
@@ -116,6 +179,7 @@
 			projectRoot = "";
 			targets = (
 				04CC78122B96AFED007FD5D1 /* ScreenTimeTracker */,
+				04CC78272B96B150007FD5D1 /* ScreenTimeReport */,
 			);
 		};
 /* End PBXProject section */
@@ -125,8 +189,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04CC781E2B96AFEE007FD5D1 /* Preview Assets.xcassets in Resources */,
 				04CC781B2B96AFEE007FD5D1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04CC78262B96B150007FD5D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,12 +207,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04CC78192B96AFED007FD5D1 /* ContentView.swift in Sources */,
+				04CC783B2B96B1A7007FD5D1 /* DeviceActivityReport.swift in Sources */,
 				04CC78172B96AFED007FD5D1 /* ScreenTimeTrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		04CC78242B96B150007FD5D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04CC782B2B96B150007FD5D1 /* ScreenTimeReport.swift in Sources */,
+				04CC783A2B96B167007FD5D1 /* DeviceActivityReport.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04CC78332B96B150007FD5D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04CC78272B96B150007FD5D1 /* ScreenTimeReport */;
+			targetProxy = 04CC78322B96B150007FD5D1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		04CC781F2B96AFEE007FD5D1 /* Debug */ = {
@@ -267,11 +354,13 @@
 		04CC78222B96AFEE007FD5D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimeTracker/ScreenTimeTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ScreenTimeTracker/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -296,11 +385,13 @@
 		04CC78232B96AFEE007FD5D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimeTracker/ScreenTimeTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ScreenTimeTracker/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -316,6 +407,58 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jackfinnis.ScreenTimeTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		04CC78362B96B151007FD5D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ScreenTimeReport/ScreenTimeReport.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4CQW4CFFYT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimeReport/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimeReport;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackfinnis.ScreenTimeTracker.ScreenTimeReport;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04CC78372B96B151007FD5D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ScreenTimeReport/ScreenTimeReport.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4CQW4CFFYT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimeReport/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimeReport;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackfinnis.ScreenTimeTracker.ScreenTimeReport;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -339,6 +482,15 @@
 			buildConfigurations = (
 				04CC78222B96AFEE007FD5D1 /* Debug */,
 				04CC78232B96AFEE007FD5D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04CC78352B96B151007FD5D1 /* Build configuration list for PBXNativeTarget "ScreenTimeReport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04CC78362B96B151007FD5D1 /* Debug */,
+				04CC78372B96B151007FD5D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
