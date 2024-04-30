@@ -49,6 +49,7 @@
 		04CC78312B96B150007FD5D1 /* ScreenTimeReport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenTimeReport.entitlements; sourceTree = "<group>"; };
 		04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityReport.swift; sourceTree = "<group>"; };
 		04CC783C2B98893D007FD5D1 /* ScreenTimeTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenTimeTracker.entitlements; sourceTree = "<group>"; };
+		04D93FB72BE11A9400F05F9F /* OLD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OLD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +103,7 @@
 			children = (
 				04CC782A2B96B150007FD5D1 /* ScreenTimeReport.swift */,
 				04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */,
+				04D93FB72BE11A9400F05F9F /* OLD.swift */,
 				04CC78302B96B150007FD5D1 /* Info.plist */,
 				04CC78312B96B150007FD5D1 /* ScreenTimeReport.entitlements */,
 			);
@@ -364,6 +366,7 @@
 				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Screen Time";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -395,6 +398,7 @@
 				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Screen Time";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

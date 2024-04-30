@@ -8,26 +8,23 @@
 import SwiftUI
 import DeviceActivity
 import FamilyControls
-import Charts
 
 @main
 struct ScreenTimeTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView()
+            ReportView()
         }
     }
 }
 
-struct RootView: View {
+struct ReportView: View {
     var body: some View {
-        NavigationStack {
-            DeviceActivityReport(
-                .totalActivity,
-                filter: DeviceActivityFilter(segment: .daily(during: DateInterval(start: .distantPast, end: .distantFuture)))
-            )
-            .navigationTitle("Screen Time")
-        }
+        DeviceActivityReport(
+            .totalActivity,
+            filter: DeviceActivityFilter(segment: .daily(during: DateInterval(start: .distantPast, end: .distantFuture)))
+        )
+        .ignoresSafeArea()
         .task {
             do {
                 try await AuthorizationCenter.shared.requestAuthorization(for: .individual)

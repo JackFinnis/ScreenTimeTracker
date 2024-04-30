@@ -7,7 +7,6 @@
 
 import DeviceActivity
 import SwiftUI
-import Charts
 
 @main
 struct ScreenTimeReportExtension: DeviceActivityReportExtension {
@@ -18,55 +17,45 @@ struct ScreenTimeReportExtension: DeviceActivityReportExtension {
     }
 }
 
-let oneHour = 3600.0
-let oneDay = 24 * oneHour
+struct ScreenTimeReportScene: DeviceActivityReportScene {
+    let context: DeviceActivityReport.Context = .totalActivity
+    let content: ([Day]) -> ScreenTimeReport
+    
+    func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> [Day] {
+        var days = [Day]()
+        for await activity in data {
+            for await segment in activity.activitySegments {
+                days.append(Day(totalActivity: segment.totalActivityDuration, dateInterval: segment.dateInterval))
+            }
+        }
+        return days
+    }
+}
 
 struct ScreenTimeReport: View {
-    @State var selectedDay: Day?
-    
     let days: [Day]
     
     var body: some View {
-        VStack {
-            Chart(days) { day in
-                let selected = day.id == selectedDay?.id
-                BarMark(
-                    x: .value("Day", day.dateInterval.start, unit: .day),
-                    y: .value("Screen Time", day.totalActivity)
-                )
-                .foregroundStyle(selected ? .orange : .accentColor)
-                .annotation(position: .top) {
-                    Text(Duration.seconds(day.totalActivity).formatted(.time(pattern: .hourMinute)))
-                        .font(.footnote)
-                }
-            }
-            .chartScrollableAxes(.horizontal)
-            .chartXVisibleDomain(length: 7 * oneDay)
-            .chartXAxis {
-                AxisMarks(values: .stride(by: .day))
-            }
-            .chartYAxis(.hidden)
-            .chartScrollTargetBehavior(.valueAligned(matching: DateComponents(hour: 0), majorAlignment: .matching(DateComponents(day: 1))))
-            .chartOverlay { chart in
-                GeometryReader { geo in
-                    Color.clear
-                        .contentShape(Rectangle())
-                        .onTapGesture { point in
-                            let date: Date? = chart.value(atX: point.x)
-                            selectedDay = days.first { $0.dateInterval.contains(date ?? .now) }
-                        }
-                }
-            }
-            .padding()
-            
-            List {
-                if let day = selectedDay {
-                    ForEach(day.categories, id: \.self) { category in
-                        Text(category.category.localizedDisplayName ?? "Name")
-                            .badge(Duration.seconds(category.totalActivityDuration).formatted(.time(pattern: .hourMinute)))
+        let max = days.map(\.totalActivity).max()!
+        
+        GeometryReader { geo in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 5) {
+                    ForEach(days.reversed()) { day in
+                        Rectangle()
+                            .fill(Color.accentColor)
+                            .frame(width: geo.size.width * day.totalActivity/max, height: 25)
+                            .clipShape(UnevenRoundedRectangle(bottomTrailingRadius: 5, topTrailingRadius: 5))
+                            .contextMenu {
+                                Section(day.dateInterval.start.formatted(date: .abbreviated, time: .omitted)) {
+                                    Text(Duration.seconds(day.totalActivity).formatted(.time(pattern: .hourMinute)))
+                                }
+                            }
                     }
                 }
+                .background(.background)
             }
+            .scrollIndicators(.hidden)
         }
     }
 }
@@ -75,22 +64,4 @@ struct Day: Identifiable {
     var id: Date { dateInterval.start }
     let totalActivity: Double
     let dateInterval: DateInterval
-    let categories: [DeviceActivityData.CategoryActivity]
-}
-
-struct ScreenTimeReportScene: DeviceActivityReportScene {
-    let context: DeviceActivityReport.Context = .totalActivity
-    let content: ([Day]) -> ScreenTimeReport
-    
-    func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> [Day] {
-        await data.flatMap(\.activitySegments).map {
-            await Day(totalActivity: $0.totalActivityDuration, dateInterval: $0.dateInterval, categories: $0.categories.collect())
-        }.collect()
-    }
-}
-
-extension AsyncSequence {
-    func collect() async rethrows -> [Element] {
-        try await reduce(into: [Element]()) { $0.append($1) }
-    }
 }
