@@ -47,7 +47,7 @@ struct ScreenTimeReport: View {
                             .frame(width: geo.size.width * day.totalActivity/max, height: 25)
                             .clipShape(UnevenRoundedRectangle(bottomTrailingRadius: 5, topTrailingRadius: 5))
                             .contextMenu {
-                                Section(day.dateInterval.start.formatted(date: .abbreviated, time: .omitted)) {
+                                Section(day.dateInterval.start.formatted(date: .complete, time: .omitted)) {
                                     Text(Duration.seconds(day.totalActivity).formatted(.time(pattern: .hourMinute)))
                                 }
                             }
@@ -56,6 +56,18 @@ struct ScreenTimeReport: View {
                 .background(.background)
             }
             .scrollIndicators(.hidden)
+            .overlay(alignment: .leading) {
+                HStack(spacing: 0) {
+                    ForEach(1..<10) { _ in
+                        HStack(spacing: 0) {
+                            Spacer()
+                            Divider()
+                        }
+                        .frame(width: geo.size.width/(max/3600))
+                    }
+                }
+                .ignoresSafeArea()
+            }
         }
     }
 }

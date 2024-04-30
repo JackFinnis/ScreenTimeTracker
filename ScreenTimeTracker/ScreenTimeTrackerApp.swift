@@ -24,6 +24,10 @@ struct ReportView: View {
             .totalActivity,
             filter: DeviceActivityFilter(segment: .daily(during: DateInterval(start: .distantPast, end: .distantFuture)))
         )
+        .background {
+            ProgressView()
+                .controlSize(.large)
+        }
         .ignoresSafeArea()
         .task {
             do {
