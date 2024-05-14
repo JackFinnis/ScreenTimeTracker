@@ -1,24 +1,15 @@
 //
-//  ScreenTimeTrackerApp.swift
+//  RootView.swift
 //  ScreenTimeTracker
 //
-//  Created by Jack Finnis on 05/03/2024.
+//  Created by Jack Finnis on 14/05/2024.
 //
 
 import SwiftUI
 import DeviceActivity
 import FamilyControls
 
-@main
-struct ScreenTimeTrackerApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ReportView()
-        }
-    }
-}
-
-struct ReportView: View {
+struct RootView: View {
     var body: some View {
         DeviceActivityReport(
             .totalActivity,
@@ -37,4 +28,8 @@ struct ReportView: View {
             }
         }
     }
+}
+
+#Preview {
+    RootView()
 }

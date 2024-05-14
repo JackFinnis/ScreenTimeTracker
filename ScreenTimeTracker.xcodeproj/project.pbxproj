@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04CC78172B96AFED007FD5D1 /* ScreenTimeTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78162B96AFED007FD5D1 /* ScreenTimeTrackerApp.swift */; };
+		04642B3D2BF3AB68009D0998 /* DeviceActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */; };
+		04642B442BF3AC7C009D0998 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B432BF3AC7C009D0998 /* RootView.swift */; };
+		04642B452BF3ACA4009D0998 /* DeviceActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */; };
+		04642B462BF3ACF3009D0998 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B432BF3AC7C009D0998 /* RootView.swift */; };
+		04642B492BF3AD8E009D0998 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B472BF3AD80009D0998 /* ReportView.swift */; };
+		04642B4C2BF3ADB6009D0998 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4B2BF3ADB6009D0998 /* Day.swift */; };
+		04642B4D2BF3ADB9009D0998 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4B2BF3ADB6009D0998 /* Day.swift */; };
+		04642B4E2BF3ADBD009D0998 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B472BF3AD80009D0998 /* ReportView.swift */; };
+		04642B502BF3C37A009D0998 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4F2BF3C37A009D0998 /* Array.swift */; };
+		04642B512BF3C389009D0998 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4F2BF3C37A009D0998 /* Array.swift */; };
+		04CC78172B96AFED007FD5D1 /* ScreenTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */; };
 		04CC781B2B96AFEE007FD5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */; };
 		04CC782B2B96B150007FD5D1 /* ScreenTimeReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC782A2B96B150007FD5D1 /* ScreenTimeReport.swift */; };
 		04CC78342B96B150007FD5D1 /* ScreenTimeReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 04CC78282B96B150007FD5D1 /* ScreenTimeReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		04CC783A2B96B167007FD5D1 /* DeviceActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */; };
-		04CC783B2B96B1A7007FD5D1 /* DeviceActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +48,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04642B432BF3AC7C009D0998 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		04642B472BF3AD80009D0998 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		04642B4B2BF3ADB6009D0998 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		04642B4F2BF3C37A009D0998 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		04CC78132B96AFED007FD5D1 /* ScreenTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		04CC78162B96AFED007FD5D1 /* ScreenTimeTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeTrackerApp.swift; sourceTree = "<group>"; };
+		04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeApp.swift; sourceTree = "<group>"; };
 		04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04CC78282B96B150007FD5D1 /* ScreenTimeReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = ScreenTimeReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CC782A2B96B150007FD5D1 /* ScreenTimeReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeReport.swift; sourceTree = "<group>"; };
@@ -90,7 +102,11 @@
 		04CC78152B96AFED007FD5D1 /* ScreenTimeTracker */ = {
 			isa = PBXGroup;
 			children = (
-				04CC78162B96AFED007FD5D1 /* ScreenTimeTrackerApp.swift */,
+				04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */,
+				04642B432BF3AC7C009D0998 /* RootView.swift */,
+				04642B472BF3AD80009D0998 /* ReportView.swift */,
+				04642B4B2BF3ADB6009D0998 /* Day.swift */,
+				04642B4F2BF3C37A009D0998 /* Array.swift */,
 				04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */,
 				04CC783C2B98893D007FD5D1 /* ScreenTimeTracker.entitlements */,
 			);
@@ -207,8 +223,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04CC783B2B96B1A7007FD5D1 /* DeviceActivityReport.swift in Sources */,
-				04CC78172B96AFED007FD5D1 /* ScreenTimeTrackerApp.swift in Sources */,
+				04642B452BF3ACA4009D0998 /* DeviceActivityReport.swift in Sources */,
+				04CC78172B96AFED007FD5D1 /* ScreenTimeApp.swift in Sources */,
+				04642B4C2BF3ADB6009D0998 /* Day.swift in Sources */,
+				04642B502BF3C37A009D0998 /* Array.swift in Sources */,
+				04642B4E2BF3ADBD009D0998 /* ReportView.swift in Sources */,
+				04642B442BF3AC7C009D0998 /* RootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,8 +236,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04642B3D2BF3AB68009D0998 /* DeviceActivityReport.swift in Sources */,
 				04CC782B2B96B150007FD5D1 /* ScreenTimeReport.swift in Sources */,
-				04CC783A2B96B167007FD5D1 /* DeviceActivityReport.swift in Sources */,
+				04642B492BF3AD8E009D0998 /* ReportView.swift in Sources */,
+				04642B512BF3C389009D0998 /* Array.swift in Sources */,
+				04642B4D2BF3ADB9009D0998 /* Day.swift in Sources */,
+				04642B462BF3ACF3009D0998 /* RootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
