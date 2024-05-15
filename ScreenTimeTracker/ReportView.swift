@@ -42,9 +42,7 @@ struct ReportView: View {
         }
         .chartYAxis(.hidden)
         .chartXAxis(.hidden)
-        .chartYScale(domain: .automatic(reversed: true))
         .padding(.trailing)
-        .ignoresSafeArea(edges: .bottom)
         .background(.background)
     }
 }

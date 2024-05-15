@@ -28,6 +28,6 @@ struct ScreenTimeReportScene: DeviceActivityReportScene {
                 days.append(Day(totalActivity: segment.totalActivityDuration, dateInterval: segment.dateInterval))
             }
         }
-        return days
+        return Array(days.drop { $0.totalActivity == 0 })
     }
 }
