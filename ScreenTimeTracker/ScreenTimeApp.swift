@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import DeviceActivity
+import FamilyControls
 
 @main
 struct ScreenTimeApp: App {
@@ -16,3 +18,27 @@ struct ScreenTimeApp: App {
     }
 }
 
+struct RootView: View {
+    var body: some View {
+        DeviceActivityReport(
+            .totalActivity,
+            filter: DeviceActivityFilter(segment: .daily(during: DateInterval(start: .distantPast, end: .distantFuture)))
+        )
+        .background {
+            ProgressView()
+                .controlSize(.large)
+        }
+        .ignoresSafeArea()
+        .task {
+            do {
+                try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
+            } catch {
+                print(error)
+            }
+        }
+    }
+}
+
+#Preview {
+    RootView()
+}

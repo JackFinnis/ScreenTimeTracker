@@ -8,13 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04642B3D2BF3AB68009D0998 /* DeviceActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */; };
-		04642B442BF3AC7C009D0998 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B432BF3AC7C009D0998 /* RootView.swift */; };
 		04642B452BF3ACA4009D0998 /* DeviceActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */; };
-		04642B462BF3ACF3009D0998 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B432BF3AC7C009D0998 /* RootView.swift */; };
-		04642B492BF3AD8E009D0998 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B472BF3AD80009D0998 /* ReportView.swift */; };
-		04642B4C2BF3ADB6009D0998 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4B2BF3ADB6009D0998 /* Day.swift */; };
-		04642B4D2BF3ADB9009D0998 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4B2BF3ADB6009D0998 /* Day.swift */; };
-		04642B4E2BF3ADBD009D0998 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B472BF3AD80009D0998 /* ReportView.swift */; };
 		04642B502BF3C37A009D0998 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4F2BF3C37A009D0998 /* Array.swift */; };
 		04642B512BF3C389009D0998 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4F2BF3C37A009D0998 /* Array.swift */; };
 		04CC78172B96AFED007FD5D1 /* ScreenTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */; };
@@ -48,9 +42,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		04642B432BF3AC7C009D0998 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		04642B472BF3AD80009D0998 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
-		04642B4B2BF3ADB6009D0998 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		04642B4F2BF3C37A009D0998 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		04CC78132B96AFED007FD5D1 /* ScreenTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeApp.swift; sourceTree = "<group>"; };
@@ -81,6 +72,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		046203A22C22CDAA00AB6BD9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */,
+				04CC783C2B98893D007FD5D1 /* ScreenTimeTracker.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		046203A32C22CDB300AB6BD9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				04CC78302B96B150007FD5D1 /* Info.plist */,
+				04CC78312B96B150007FD5D1 /* ScreenTimeReport.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		046203A42C22CDC200AB6BD9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				04642B4F2BF3C37A009D0998 /* Array.swift */,
+				04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		04CC780A2B96AFED007FD5D1 = {
 			isa = PBXGroup;
 			children = (
@@ -103,12 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */,
-				04642B432BF3AC7C009D0998 /* RootView.swift */,
-				04642B472BF3AD80009D0998 /* ReportView.swift */,
-				04642B4B2BF3ADB6009D0998 /* Day.swift */,
-				04642B4F2BF3C37A009D0998 /* Array.swift */,
-				04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */,
-				04CC783C2B98893D007FD5D1 /* ScreenTimeTracker.entitlements */,
+				046203A22C22CDAA00AB6BD9 /* Resources */,
 			);
 			path = ScreenTimeTracker;
 			sourceTree = "<group>";
@@ -117,9 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				04CC782A2B96B150007FD5D1 /* ScreenTimeReport.swift */,
-				04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */,
-				04CC78302B96B150007FD5D1 /* Info.plist */,
-				04CC78312B96B150007FD5D1 /* ScreenTimeReport.entitlements */,
+				046203A42C22CDC200AB6BD9 /* Extensions */,
+				046203A32C22CDB300AB6BD9 /* Resources */,
 			);
 			path = ScreenTimeReport;
 			sourceTree = "<group>";
@@ -225,10 +237,7 @@
 			files = (
 				04642B452BF3ACA4009D0998 /* DeviceActivityReport.swift in Sources */,
 				04CC78172B96AFED007FD5D1 /* ScreenTimeApp.swift in Sources */,
-				04642B4C2BF3ADB6009D0998 /* Day.swift in Sources */,
 				04642B502BF3C37A009D0998 /* Array.swift in Sources */,
-				04642B4E2BF3ADBD009D0998 /* ReportView.swift in Sources */,
-				04642B442BF3AC7C009D0998 /* RootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,10 +247,7 @@
 			files = (
 				04642B3D2BF3AB68009D0998 /* DeviceActivityReport.swift in Sources */,
 				04CC782B2B96B150007FD5D1 /* ScreenTimeReport.swift in Sources */,
-				04642B492BF3AD8E009D0998 /* ReportView.swift in Sources */,
 				04642B512BF3C389009D0998 /* Array.swift in Sources */,
-				04642B4D2BF3ADB9009D0998 /* Day.swift in Sources */,
-				04642B462BF3ACF3009D0998 /* RootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +387,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ScreenTimeTracker/ScreenTimeTracker.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimeTracker/Resources/ScreenTimeTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -412,7 +418,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ScreenTimeTracker/ScreenTimeTracker.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimeTracker/Resources/ScreenTimeTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -440,12 +446,12 @@
 		04CC78362B96B151007FD5D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ScreenTimeReport/ScreenTimeReport.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimeReport/Resources/ScreenTimeReport.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ScreenTimeReport/Info.plist;
+				INFOPLIST_FILE = ScreenTimeReport/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimeReport;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -466,12 +472,12 @@
 		04CC78372B96B151007FD5D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ScreenTimeReport/ScreenTimeReport.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ScreenTimeReport/Resources/ScreenTimeReport.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ScreenTimeReport/Info.plist;
+				INFOPLIST_FILE = ScreenTimeReport/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimeReport;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
