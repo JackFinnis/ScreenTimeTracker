@@ -56,7 +56,7 @@ struct ReportView: View {
             }
             Chart(days.indices, id: \.self) { i in
                 let day = days[i]
-                let averageActivity = (-1...1).map { days[safe: i + $0] }.compactMap { $0 }.map(\.totalActivity).average()
+                let averageActivity = (-2...2).map { days[safe: i + $0] }.compactMap { $0 }.map(\.totalActivity).average()
                 
                 BarMark(
                     x: .value("Total Activity", day.totalActivity),
