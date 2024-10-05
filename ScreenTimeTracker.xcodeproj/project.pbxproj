@@ -11,9 +11,11 @@
 		04642B452BF3ACA4009D0998 /* DeviceActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */; };
 		04642B502BF3C37A009D0998 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4F2BF3C37A009D0998 /* Array.swift */; };
 		04642B512BF3C389009D0998 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4F2BF3C37A009D0998 /* Array.swift */; };
+		04BFF0242CB135F7001E61BF /* SleepReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0232CB135F7001E61BF /* SleepReport.swift */; };
+		04BFF0262CB13664001E61BF /* ScreenTimeReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */; };
 		04CC78172B96AFED007FD5D1 /* ScreenTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */; };
 		04CC781B2B96AFEE007FD5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */; };
-		04CC782B2B96B150007FD5D1 /* ScreenTimeReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC782A2B96B150007FD5D1 /* ScreenTimeReport.swift */; };
+		04CC782B2B96B150007FD5D1 /* ActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC782A2B96B150007FD5D1 /* ActivityReport.swift */; };
 		04CC78342B96B150007FD5D1 /* ScreenTimeReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 04CC78282B96B150007FD5D1 /* ScreenTimeReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -43,11 +45,13 @@
 
 /* Begin PBXFileReference section */
 		04642B4F2BF3C37A009D0998 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		04BFF0232CB135F7001E61BF /* SleepReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepReport.swift; sourceTree = "<group>"; };
+		04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeReport.swift; sourceTree = "<group>"; };
 		04CC78132B96AFED007FD5D1 /* ScreenTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeApp.swift; sourceTree = "<group>"; };
 		04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04CC78282B96B150007FD5D1 /* ScreenTimeReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = ScreenTimeReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		04CC782A2B96B150007FD5D1 /* ScreenTimeReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeReport.swift; sourceTree = "<group>"; };
+		04CC782A2B96B150007FD5D1 /* ActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityReport.swift; sourceTree = "<group>"; };
 		04CC78302B96B150007FD5D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04CC78312B96B150007FD5D1 /* ScreenTimeReport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenTimeReport.entitlements; sourceTree = "<group>"; };
 		04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityReport.swift; sourceTree = "<group>"; };
@@ -129,7 +133,9 @@
 		04CC78292B96B150007FD5D1 /* ScreenTimeReport */ = {
 			isa = PBXGroup;
 			children = (
-				04CC782A2B96B150007FD5D1 /* ScreenTimeReport.swift */,
+				04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */,
+				04CC782A2B96B150007FD5D1 /* ActivityReport.swift */,
+				04BFF0232CB135F7001E61BF /* SleepReport.swift */,
 				046203A42C22CDC200AB6BD9 /* Extensions */,
 				046203A32C22CDB300AB6BD9 /* Resources */,
 			);
@@ -246,7 +252,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				04642B3D2BF3AB68009D0998 /* DeviceActivityReport.swift in Sources */,
-				04CC782B2B96B150007FD5D1 /* ScreenTimeReport.swift in Sources */,
+				04BFF0262CB13664001E61BF /* ScreenTimeReport.swift in Sources */,
+				04CC782B2B96B150007FD5D1 /* ActivityReport.swift in Sources */,
+				04BFF0242CB135F7001E61BF /* SleepReport.swift in Sources */,
 				04642B512BF3C389009D0998 /* Array.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

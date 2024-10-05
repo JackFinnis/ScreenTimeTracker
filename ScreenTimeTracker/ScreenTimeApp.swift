@@ -21,7 +21,7 @@ struct ScreenTimeApp: App {
 struct RootView: View {
     var body: some View {
         DeviceActivityReport(
-            .totalActivity,
+            .activity,
             filter: DeviceActivityFilter(segment: .daily(during: DateInterval(start: .distantPast, end: .distantFuture)))
         )
         .background {

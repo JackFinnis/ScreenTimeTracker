@@ -9,5 +9,6 @@ import SwiftUI
 import DeviceActivity
 
 extension DeviceActivityReport.Context {
-    static let totalActivity = Self("Total Activity")
+    static let activity = Self("activity")
+    static let sleep = Self("sleep")
 }
