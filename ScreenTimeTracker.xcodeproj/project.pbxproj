@@ -13,6 +13,8 @@
 		04642B512BF3C389009D0998 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4F2BF3C37A009D0998 /* Array.swift */; };
 		04BFF0242CB135F7001E61BF /* SleepReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0232CB135F7001E61BF /* SleepReport.swift */; };
 		04BFF0262CB13664001E61BF /* ScreenTimeReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */; };
+		04BFF0282CB17A0B001E61BF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0272CB17A09001E61BF /* Date.swift */; };
+		04BFF0292CB17A0B001E61BF /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0272CB17A09001E61BF /* Date.swift */; };
 		04CC78172B96AFED007FD5D1 /* ScreenTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */; };
 		04CC781B2B96AFEE007FD5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */; };
 		04CC782B2B96B150007FD5D1 /* ActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC782A2B96B150007FD5D1 /* ActivityReport.swift */; };
@@ -47,6 +49,7 @@
 		04642B4F2BF3C37A009D0998 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		04BFF0232CB135F7001E61BF /* SleepReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepReport.swift; sourceTree = "<group>"; };
 		04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeReport.swift; sourceTree = "<group>"; };
+		04BFF0272CB17A09001E61BF /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		04CC78132B96AFED007FD5D1 /* ScreenTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeApp.swift; sourceTree = "<group>"; };
 		04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				04642B4F2BF3C37A009D0998 /* Array.swift */,
+				04BFF0272CB17A09001E61BF /* Date.swift */,
 				04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */,
 			);
 			path = Extensions;
@@ -189,7 +193,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					04CC78122B96AFED007FD5D1 = {
 						CreatedOnToolsVersion = 15.2;
@@ -244,6 +248,7 @@
 				04642B452BF3ACA4009D0998 /* DeviceActivityReport.swift in Sources */,
 				04CC78172B96AFED007FD5D1 /* ScreenTimeApp.swift in Sources */,
 				04642B502BF3C37A009D0998 /* Array.swift in Sources */,
+				04BFF0292CB17A0B001E61BF /* Date.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04642B3D2BF3AB68009D0998 /* DeviceActivityReport.swift in Sources */,
+				04BFF0282CB17A0B001E61BF /* Date.swift in Sources */,
 				04BFF0262CB13664001E61BF /* ScreenTimeReport.swift in Sources */,
 				04CC782B2B96B150007FD5D1 /* ActivityReport.swift in Sources */,
 				04BFF0242CB135F7001E61BF /* SleepReport.swift in Sources */,
@@ -392,7 +398,6 @@
 		04CC78222B96AFEE007FD5D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ScreenTimeTracker/Resources/ScreenTimeTracker.entitlements;
@@ -402,11 +407,12 @@
 				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Screen Time";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sleep Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -414,16 +420,19 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jackfinnis.ScreenTimeTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		04CC78232B96AFEE007FD5D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ScreenTimeTracker/Resources/ScreenTimeTracker.entitlements;
@@ -433,11 +442,12 @@
 				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Screen Time";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sleep Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,9 +455,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jackfinnis.ScreenTimeTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

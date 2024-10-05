@@ -24,6 +24,11 @@ struct RootView: View {
             .activity,
             filter: DeviceActivityFilter(segment: .daily(during: DateInterval(start: .distantPast, end: .distantFuture)))
         )
+//        DeviceActivityReport(
+//            .sleep,
+//            filter: DeviceActivityFilter(segment: .hourly(during: .init(start: .distantPast, end: .distantFuture)))
+//        )
+//        .preferredColorScheme(.dark)
         .background {
             ProgressView()
                 .controlSize(.large)

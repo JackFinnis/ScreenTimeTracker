@@ -14,8 +14,8 @@ struct ScreenTimeReportExtension: DeviceActivityReportExtension {
         ActivityReportScene { days in
             ActivityReportView(days: days)
         }
-        SleepReportScene { days in
-            SleepReportView(days: days)
+        SleepReportScene { sleeps in
+            SleepReportView(sleeps: sleeps)
         }
     }
 }
