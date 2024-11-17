@@ -9,72 +9,62 @@ import DeviceActivity
 import SwiftUI
 import Charts
 
-struct ActivityReportScene: DeviceActivityReportScene {
-    let context: DeviceActivityReport.Context = .activity
-    let content: ([Day]) -> ActivityReportView
-    
-    func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> [Day] {
-        var days = [Day]()
-        for await activity in data {
-            for await segment in activity.activitySegments {
-                days.append(Day(totalActivity: segment.totalActivityDuration, dateInterval: segment.dateInterval))
-            }
-        }
-        return Array(days.drop { $0.totalActivity == 0 })
-    }
-}
-
 struct Day: Identifiable, Equatable {
     var id: Date { dateInterval.start }
     let totalActivity: Double
     let dateInterval: DateInterval
 }
 
+struct ActivityReportScene: DeviceActivityReportScene {
+    let context: DeviceActivityReport.Context = .activity
+    let content: ([Day]) -> ActivityReportView
+    
+    func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> [Day] {
+        var days: [Day] = []
+        for await activity in data {
+            for await segment in activity.activitySegments  {
+                var totalActivity: Double = 0
+                for await category in segment.categories {
+                    for await application in category.applications {
+                        guard let bundleIdentifier = application.application.bundleIdentifier,
+                              bundleIdentifier != "net.whatsapp.WhatsApp",
+                              !bundleIdentifier.starts(with: "com.jackfinnis")
+                        else { continue }
+                        totalActivity += application.totalActivityDuration
+                    }
+                }
+                if totalActivity != 0 {
+                    days.append(Day(totalActivity: totalActivity, dateInterval: segment.dateInterval))
+                }
+            }
+        }
+        return days
+    }
+}
+
 struct ActivityReportView: View {
     let days: [Day]
     
     var body: some View {
-        ZStack {
-            Chart(days) { day in
-                let today = day == days.last
-                BarMark(
-                    x: .value("Total Activity", day.totalActivity),
-                    y: .value("Date", day.dateInterval.start, unit: .day),
-                    width: .ratio(0.9)
-                )
-                .cornerRadius(5)
-                .foregroundStyle(today ? .indigo.opacity(0.5) : .indigo)
-            }
-            Chart(days.indices, id: \.self) { i in
-                let day = days[i]
-                let averageActivity = (-2...2).map { days[safe: i + $0] }.compactMap { $0 }.map(\.totalActivity).average()
-                
-                BarMark(
-                    x: .value("Total Activity", day.totalActivity),
-                    y: .value("Date", day.dateInterval.start, unit: .day)
-                )
-                .foregroundStyle(.clear)
-                
-                LineMark(
-                    x: .value("Average Activity", averageActivity),
-                    y: .value("Date", day.dateInterval.start, unit: .day)
-                )
-                .interpolationMethod(.catmullRom)
-                .lineStyle(.init(lineWidth: 5, lineCap: .round, lineJoin: .round))
-                .foregroundStyle(.orange)
-            }
+        Chart(days) { day in
+            let today = day == days.last
+            BarMark(
+                x: .value("Total Activity", day.totalActivity),
+                y: .value("Date", day.dateInterval.start, unit: .day)
+            )
+            .foregroundStyle(.indigo.opacity(today ? 0.5 : 1))
         }
         .chartYAxis(.hidden)
         .chartXAxis {
             AxisMarks(preset: .aligned, values: .stride(by: 3600)) { value in
-                if value.index > 0 {
+                if value.index > 0 && value.index != value.count - 1 {
                     AxisValueLabel(String(value.index))
                     AxisGridLine()
                 }
             }
         }
-        .chartXAxisLabel("Hours", alignment: .center)
-        .padding(.trailing)
+        .chartXAxisLabel("Wasted Hours", alignment: .center)
+        .padding(.top)
         .background(.background)
     }
 }
