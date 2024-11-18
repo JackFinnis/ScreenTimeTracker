@@ -19,17 +19,38 @@ struct ScreenTimeApp: App {
 }
 
 struct RootView: View {
+    @AppState("productiveActivities") var productiveActivities = FamilyActivitySelection(includeEntireCategory: true)
+    @State var showActivityPicker = false
+    
     var body: some View {
-        DeviceActivityReport(
-            .activity,
-            filter: DeviceActivityFilter(segment: .daily(during: DateInterval(start: Calendar.current.date(byAdding: .day, value: -14, to: .now)!, end: .now)))
-        )
-        .background {
-            ProgressView()
-                .controlSize(.large)
+        NavigationStack {
+            DeviceActivityReport(
+                .activity,
+                filter: DeviceActivityFilter(
+                    segment: .daily(during: DateInterval(start: Calendar.current.date(byAdding: .day, value: -6, to: .now)!, end: .now))
+                )
+            )
+            .ignoresSafeArea(edges: .bottom)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Button(productiveActivities.applications.count.formatted(singular: "Productive App")) {
+                        showActivityPicker = true
+                    }
+                    .font(.headline)
+                }
+            }
+            .background {
+                ProgressView()
+                    .controlSize(.large)
+            }
         }
-        .ignoresSafeArea()
+        .sensoryFeedback(.impact, trigger: productiveActivities)
+        .familyActivityPicker(isPresented: $showActivityPicker, selection: $productiveActivities)
         .task {
+            print(Calendar.current.veryShortWeekdaySymbols)
+            print(Calendar.current.component(.weekday, from: .now))
+            print(Date.now.day)
             do {
                 try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
             } catch {
