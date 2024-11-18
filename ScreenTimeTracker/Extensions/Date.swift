@@ -13,6 +13,10 @@ extension Date {
     }
     
     var day: String {
+        Calendar.current.weekdaySymbols[self[.weekday] - 1]
+    }
+    
+    var dayInitial: String {
         Calendar.current.veryShortWeekdaySymbols[self[.weekday] - 1]
     }
 }

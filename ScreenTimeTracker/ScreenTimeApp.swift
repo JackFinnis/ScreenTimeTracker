@@ -33,8 +33,12 @@ struct RootView: View {
             .ignoresSafeArea(edges: .bottom)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Button(productiveActivities.applications.count.formatted(singular: "Productive App")) {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("Screen Time")
+                        .font(.headline)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Productive Apps") {
                         showActivityPicker = true
                     }
                     .font(.headline)

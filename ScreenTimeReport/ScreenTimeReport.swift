@@ -77,7 +77,7 @@ struct ActivityReportView: View {
         VStack(spacing: 0) {
             Chart {
                 ForEach(days) { day in
-                    let selected = day == selectedDay
+                    let selected = day.id == selectedDay?.id
                     let color: Color = selected ? .orange : .indigo
                     let productiveApps = day.apps.filter { isProductive($0) }
                     let unproductiveApps = day.apps.filter { !isProductive($0) }
@@ -104,11 +104,21 @@ struct ActivityReportView: View {
                     y: .value("Average Activity", averageActivity)
                 )
                 .foregroundStyle(.orange.opacity(0.5))
+                .annotation(alignment: .trailing) {
+                    Text(Duration.seconds(averageActivity).formatted(Duration.UnitsFormatStyle(allowedUnits: [.hours, .minutes], width: .narrow)))
+                        .foregroundStyle(.orange.opacity(0.5))
+                        .font(.caption)
+                }
                 
                 RuleMark(
                     y: .value("Average Unproductive Activity", averageUnproductiveActivity)
                 )
                 .foregroundStyle(.orange)
+                .annotation(alignment: .trailing) {
+                    Text(Duration.seconds(averageUnproductiveActivity).formatted(Duration.UnitsFormatStyle(allowedUnits: [.hours, .minutes], width: .narrow)))
+                        .foregroundStyle(.orange)
+                        .font(.caption)
+                }
             }
             .chartYAxis {
                 AxisMarks(preset: .aligned, values: .stride(by: 3600)) { value in
@@ -119,7 +129,7 @@ struct ActivityReportView: View {
             .chartXAxis {
                 AxisMarks(preset: .aligned, values: .stride(by: .day)) { value in
                     if let date = value.as(Date.self) {
-                        AxisValueLabel(date.day, centered: true)
+                        AxisValueLabel(date.dayInitial, centered: true)
                     }
                 }
             }
@@ -130,32 +140,50 @@ struct ActivityReportView: View {
                     selectedDay = days.first { $0.dateInterval.contains(date) }
                 }
             }))
-            .padding(.vertical, 5)
+            .padding(.top, 5)
+            .padding(.horizontal)
             .frame(height: 250)
             
-            Divider()
-            List {
-                if let selectedDay {
-                    let maxActivity = selectedDay.apps.first?.totalActivity ?? 1
-                    ForEach(selectedDay.apps) { app in
-                        if app.totalActivity > 60 {
-                            Text(app.name)
-                                .badge(Duration.seconds(app.totalActivity).formatted(Duration.UnitsFormatStyle(allowedUnits: [.hours, .minutes], width: .narrow)))
-                                .listRowBackground(
-                                    GeometryReader { geo in
-                                        HStack(spacing: 0) {
-                                            Color.orange.opacity(isProductive(app) ? 0.15 : 0.3)
-                                                .frame(width: geo.size.width * app.totalActivity / maxActivity)
-                                            Color.clear
-                                        }
+            if let selectedDay {
+                let maxActivity = selectedDay.apps.first?.totalActivity ?? 1
+                let unproductiveApps = selectedDay.apps.filter { !isProductive($0) }
+                let unproductiveActivity = unproductiveApps.map(\.totalActivity).sum()
+                
+                HStack {
+                    Text(selectedDay.id.day)
+                        .font(.headline)
+                    Spacer()
+                    Text(Duration.seconds(selectedDay.totalActivity).formatted(Duration.UnitsFormatStyle(allowedUnits: [.hours, .minutes], width: .narrow)))
+                        .foregroundStyle(.orange.opacity(0.5))
+                    Text(Duration.seconds(unproductiveActivity).formatted(Duration.UnitsFormatStyle(allowedUnits: [.hours, .minutes], width: .narrow)))
+                        .foregroundStyle(.orange)
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 10)
+                Divider()
+                List(selectedDay.apps) { app in
+                    if app.totalActivity > 60 {
+                        Text(app.name)
+                            .badge(Duration.seconds(app.totalActivity).formatted(Duration.UnitsFormatStyle(allowedUnits: [.hours, .minutes], width: .narrow)))
+                            .listRowBackground(
+                                GeometryReader { geo in
+                                    HStack(spacing: 0) {
+                                        Color.orange.opacity(isProductive(app) ? 0.15 : 0.3)
+                                            .frame(width: geo.size.width * app.totalActivity / maxActivity)
+                                        Color.clear
                                     }
-                                )
-                        }
+                                }
+                            )
                     }
                 }
+                .listStyle(.plain)
+            } else {
+                Spacer()
             }
-            .listStyle(.plain)
         }
         .background(.background)
+        .onAppear {
+            selectedDay = days.last
+        }
     }
 }
