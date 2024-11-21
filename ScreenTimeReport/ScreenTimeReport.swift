@@ -97,8 +97,9 @@ struct ActivityReportView: View {
                     .foregroundStyle(color.opacity(0.5))
                 }
                 
-                let averageActivity = days.map(\.totalActivity).average()
-                let averageUnproductiveActivity = days.map { $0.apps.filter { !isProductive($0) }.map(\.totalActivity).sum() }.average()
+                let averageDays = days.dropLast()
+                let averageActivity = averageDays.map(\.totalActivity).average()
+                let averageUnproductiveActivity = averageDays.map { $0.apps.filter { !isProductive($0) }.map(\.totalActivity).sum() }.average()
                 
                 RuleMark(
                     y: .value("Average Activity", averageActivity)
@@ -122,14 +123,19 @@ struct ActivityReportView: View {
             }
             .chartYAxis {
                 AxisMarks(preset: .aligned, values: .stride(by: 3600)) { value in
-                    AxisValueLabel(String(value.index))
                     AxisGridLine()
+                    if value.index.isMultiple(of: 2) {
+                        AxisValueLabel("\(value.index)h")
+                    }
                 }
             }
             .chartXAxis {
                 AxisMarks(preset: .aligned, values: .stride(by: .day)) { value in
                     if let date = value.as(Date.self) {
+                        let today = date == Date.now.startOfDay
                         AxisValueLabel(date.dayInitial, centered: true)
+                            .foregroundStyle(today ? .orange : .secondary)
+                            .font(.caption.weight(today ? .bold : .regular))
                     }
                 }
             }

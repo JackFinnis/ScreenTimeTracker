@@ -12,11 +12,21 @@ extension Date {
         Calendar.current.component(component, from: self)
     }
     
+    var startOfDay: Date {
+        Calendar.current.startOfDay(for: self)
+    }
+    
     var day: String {
-        Calendar.current.weekdaySymbols[self[.weekday] - 1]
+        if Calendar.current.isDateInToday(self) {
+            return "Today"
+        } else if Calendar.current.isDateInYesterday(self) {
+            return "Yesterday"
+        } else {
+            return Calendar.current.weekdaySymbols[self[.weekday] - 1]
+        }
     }
     
     var dayInitial: String {
-        Calendar.current.veryShortWeekdaySymbols[self[.weekday] - 1]
+        Calendar.current.shortWeekdaySymbols[self[.weekday] - 1]
     }
 }

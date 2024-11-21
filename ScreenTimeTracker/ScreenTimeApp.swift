@@ -52,9 +52,6 @@ struct RootView: View {
         .sensoryFeedback(.impact, trigger: productiveActivities)
         .familyActivityPicker(isPresented: $showActivityPicker, selection: $productiveActivities)
         .task {
-            print(Calendar.current.veryShortWeekdaySymbols)
-            print(Calendar.current.component(.weekday, from: .now))
-            print(Date.now.day)
             do {
                 try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
             } catch {
