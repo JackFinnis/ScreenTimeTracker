@@ -100,15 +100,15 @@ struct ActivityReportView: View {
                 let averageDays = days.dropLast()
                 let averageActivity = averageDays.map(\.totalActivity).average()
                 let averageUnproductiveActivity = averageDays.map { $0.apps.filter { !isProductive($0) }.map(\.totalActivity).sum() }.average()
-                
+                                
                 RuleMark(
                     y: .value("Average Activity", averageActivity)
                 )
                 .foregroundStyle(.orange.opacity(0.5))
                 .annotation(alignment: .trailing) {
                     Text(Duration.seconds(averageActivity).formatted(Duration.UnitsFormatStyle(allowedUnits: [.hours, .minutes], width: .narrow)))
-                        .foregroundStyle(.orange.opacity(0.5))
-                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .font(.caption2)
                 }
                 
                 RuleMark(
@@ -117,8 +117,8 @@ struct ActivityReportView: View {
                 .foregroundStyle(.orange)
                 .annotation(alignment: .trailing) {
                     Text(Duration.seconds(averageUnproductiveActivity).formatted(Duration.UnitsFormatStyle(allowedUnits: [.hours, .minutes], width: .narrow)))
-                        .foregroundStyle(.orange)
-                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .font(.caption2)
                 }
             }
             .chartYAxis {
@@ -135,7 +135,6 @@ struct ActivityReportView: View {
                         let today = date == Date.now.startOfDay
                         AxisValueLabel(date.dayInitial, centered: true)
                             .foregroundStyle(today ? .orange : .secondary)
-                            .font(.caption.weight(today ? .bold : .regular))
                     }
                 }
             }
