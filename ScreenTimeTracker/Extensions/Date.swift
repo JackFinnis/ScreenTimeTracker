@@ -28,7 +28,7 @@ extension Date {
         } else if self > Calendar.current.date(byAdding: .day, value: -7, to: .startOfToday)! {
             return formatted(Date.FormatStyle().weekday(.wide))
         } else {
-            return formatted(Date.FormatStyle().weekday(.wide).day().month(.wide))
+            return formatted(Date.FormatStyle().weekday(.wide).day().month())
         }
     }
     

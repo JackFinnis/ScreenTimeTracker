@@ -23,17 +23,14 @@ struct RootView: View {
     @State var showActivityPicker = false
     @State var weeksAgo = 0
     
-    var title: String {
-        if weeksAgo == 0 {
-            return "This Week"
-        } else {
-            return "\(weeksAgo.formatted(singular: "Week")) Ago"
-        }
-    }
-    
     var body: some View {
         let end = Calendar.current.date(byAdding: .day, value: weeksAgo * -7, to: .now)!
         let start = Calendar.current.date(byAdding: .day, value: -6, to: end)!
+        var title: String {
+            let end = end.formatted(Date.FormatStyle().day().month())
+            let start = start.formatted(Date.FormatStyle().day().month())
+            return "\(start) to \(end)"
+        }
         
         NavigationStack {
             DeviceActivityReport(
@@ -55,8 +52,12 @@ struct RootView: View {
                             Image(systemName: "chevron.left")
                         }
                         .disabled(weeksAgo == 3)
+                        .fixedSize()
+                        
                         Text(title)
+                            .frame(width: 150)
                             .monospacedDigit()
+                        
                         Button {
                             if weeksAgo > 0 {
                                 weeksAgo -= 1
@@ -65,6 +66,7 @@ struct RootView: View {
                             Image(systemName: "chevron.right")
                         }
                         .disabled(weeksAgo == 0)
+                        .fixedSize()
                     }
                     .font(.headline)
                 }

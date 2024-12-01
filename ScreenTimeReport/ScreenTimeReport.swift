@@ -15,7 +15,7 @@ import ManagedSettings
 struct ScreenTimeReportExtension: DeviceActivityReportExtension {
     var body: some DeviceActivityReportScene {
         ActivityReportScene { days in
-            ActivityReportView(days: days)
+            ActivityReportWrapper(days: days)
         }
     }
 }
@@ -39,7 +39,7 @@ struct App: Identifiable, Equatable {
 
 struct ActivityReportScene: DeviceActivityReportScene {
     let context: DeviceActivityReport.Context = .activity
-    let content: ([Day]) -> ActivityReportView
+    let content: ([Day]) -> ActivityReportWrapper
     
     func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> [Day] {
         var days: [Day] = []
@@ -59,6 +59,15 @@ struct ActivityReportScene: DeviceActivityReportScene {
             }
         }
         return days
+    }
+}
+
+struct ActivityReportWrapper: View {
+    let days: [Day]
+    
+    var body: some View {
+        ActivityReportView(days: days)
+            .id(days.first?.dateInterval)
     }
 }
 
