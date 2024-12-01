@@ -21,27 +21,57 @@ struct ScreenTimeApp: App {
 struct RootView: View {
     @AppState("productiveActivities") var productiveActivities = FamilyActivitySelection(includeEntireCategory: true)
     @State var showActivityPicker = false
+    @State var weeksAgo = 0
+    
+    var title: String {
+        if weeksAgo == 0 {
+            return "This Week"
+        } else {
+            return "\(weeksAgo.formatted(singular: "Week")) Ago"
+        }
+    }
     
     var body: some View {
+        let end = Calendar.current.date(byAdding: .day, value: weeksAgo * -7, to: .now)!
+        let start = Calendar.current.date(byAdding: .day, value: -6, to: end)!
+        
         NavigationStack {
             DeviceActivityReport(
                 .activity,
                 filter: DeviceActivityFilter(
-                    segment: .daily(during: DateInterval(start: Calendar.current.date(byAdding: .day, value: -6, to: .now)!, end: .now))
+                    segment: .daily(during: DateInterval(start: start, end: end))
                 )
             )
             .ignoresSafeArea(edges: .bottom)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Text("Screen Time")
-                        .font(.headline)
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Productive Apps") {
-                        showActivityPicker = true
+                ToolbarItem(placement: .principal) {
+                    HStack {
+                        Button {
+                            if weeksAgo < 3 {
+                                weeksAgo += 1
+                            }
+                        } label: {
+                            Image(systemName: "chevron.left")
+                        }
+                        .disabled(weeksAgo == 3)
+                        Text(title)
+                            .monospacedDigit()
+                        Button {
+                            if weeksAgo > 0 {
+                                weeksAgo -= 1
+                            }
+                        } label: {
+                            Image(systemName: "chevron.right")
+                        }
+                        .disabled(weeksAgo == 0)
                     }
                     .font(.headline)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Edit") {
+                        showActivityPicker = true
+                    }
                 }
             }
             .background {
@@ -50,7 +80,7 @@ struct RootView: View {
             }
         }
         .sensoryFeedback(.impact, trigger: productiveActivities)
-        .familyActivityPicker(isPresented: $showActivityPicker, selection: $productiveActivities)
+        .familyActivityPicker(headerText: "Select Productive Apps", isPresented: $showActivityPicker, selection: $productiveActivities)
         .task {
             do {
                 try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
