@@ -18,10 +18,28 @@ struct ScreenTimeApp: App {
     }
 }
 
+enum Device: String, CaseIterable {
+    case iPhone
+    case iPad
+    case mac = "Mac"
+    
+    var model: DeviceActivityData.Device.Model {
+        switch self {
+        case .iPhone:
+            return .iPhone
+        case .iPad:
+            return .iPad
+        case .mac:
+            return .mac
+        }
+    }
+}
+
 struct RootView: View {
     @AppState("productiveActivities") var productiveActivities = FamilyActivitySelection(includeEntireCategory: true)
     @State var showActivityPicker = false
     @State var weeksAgo = 0
+    @State var device: Device = .iPhone
     
     var body: some View {
         let end = Calendar.current.date(byAdding: .day, value: weeksAgo * -7, to: .now)!
@@ -36,14 +54,24 @@ struct RootView: View {
             DeviceActivityReport(
                 .activity,
                 filter: DeviceActivityFilter(
-                    segment: .daily(during: DateInterval(start: start, end: end))
+                    segment: .daily(during: DateInterval(start: start, end: end)),
+                    devices: .init([device.model])
                 )
             )
             .ignoresSafeArea(edges: .bottom)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu(device.rawValue) {
+                        Picker("Device", selection: $device) {
+                            ForEach(Device.allCases, id: \.self) { device in
+                                Text(device.rawValue)
+                            }
+                        }
+                    }
+                }
                 ToolbarItem(placement: .principal) {
-                    HStack {
+                    HStack(spacing: 0) {
                         Button {
                             if weeksAgo < 3 {
                                 weeksAgo += 1

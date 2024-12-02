@@ -14,10 +14,16 @@ import ManagedSettings
 @main
 struct ScreenTimeReportExtension: DeviceActivityReportExtension {
     var body: some DeviceActivityReportScene {
-        ActivityReportScene { days in
-            ActivityReportWrapper(days: days)
+        ActivityReportScene { report in
+            ActivityReportWrapper(report: report)
         }
     }
+}
+
+struct Report {
+    let model: DeviceActivityData.Device.Model
+    let date: Date
+    let days: [Day]
 }
 
 struct Day: Identifiable, Equatable {
@@ -39,11 +45,13 @@ struct App: Identifiable, Equatable {
 
 struct ActivityReportScene: DeviceActivityReportScene {
     let context: DeviceActivityReport.Context = .activity
-    let content: ([Day]) -> ActivityReportWrapper
+    let content: (Report) -> ActivityReportWrapper
     
-    func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> [Day] {
+    func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> Report {
         var days: [Day] = []
+        var model: DeviceActivityData.Device.Model = .iPhone
         for await activity in data {
+            model = activity.device.model
             for await segment in activity.activitySegments {
                 var apps: [App] = []
                 for await category in segment.categories {
@@ -58,16 +66,18 @@ struct ActivityReportScene: DeviceActivityReportScene {
                 days.append(Day(dateInterval: segment.dateInterval, totalActivity: segment.totalActivityDuration, apps: apps.sorted(using: SortDescriptor(\.totalActivity, order: .reverse))))
             }
         }
-        return days
+        let date = days.first?.dateInterval.start ?? .now
+        return Report(model: model, date: date, days: days)
     }
 }
 
 struct ActivityReportWrapper: View {
-    let days: [Day]
+    let report: Report
     
     var body: some View {
-        ActivityReportView(days: days)
-            .id(days.first?.dateInterval)
+        ActivityReportView(days: report.days)
+            .id(report.model)
+            .id(report.date)
     }
 }
 
