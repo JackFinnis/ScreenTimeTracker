@@ -169,7 +169,7 @@ struct ActivityReportView: View {
             .frame(height: 250)
             
             if let selectedDay {
-                let maxActivity = selectedDay.apps.first?.totalActivity ?? 1
+                let maxActivity = days.compactMap(\.apps.first?.totalActivity).max() ?? 1
                 let unproductiveApps = selectedDay.apps.filter { !isProductive($0) }
                 let unproductiveActivity = unproductiveApps.map(\.totalActivity).sum()
                 
