@@ -20,7 +20,7 @@
 		04AB4A182CEAC76100A78463 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB4A172CEAC76000A78463 /* Date.swift */; };
 		04AB4A192CEAC76100A78463 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB4A172CEAC76000A78463 /* Date.swift */; };
 		04BFF0262CB13664001E61BF /* ScreenTimeReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */; };
-		04CC78172B96AFED007FD5D1 /* ScreenTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */; };
+		04CC78172B96AFED007FD5D1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78162B96AFED007FD5D1 /* App.swift */; };
 		04CC781B2B96AFEE007FD5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */; };
 		04CC78342B96B150007FD5D1 /* ScreenTimeReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 04CC78282B96B150007FD5D1 /* ScreenTimeReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -57,7 +57,7 @@
 		04AB4A172CEAC76000A78463 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeReport.swift; sourceTree = "<group>"; };
 		04CC78132B96AFED007FD5D1 /* ScreenTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeApp.swift; sourceTree = "<group>"; };
+		04CC78162B96AFED007FD5D1 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04CC78282B96B150007FD5D1 /* ScreenTimeReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = ScreenTimeReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CC78302B96B150007FD5D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,10 +143,10 @@
 		04CC78152B96AFED007FD5D1 /* ScreenTimeTracker */ = {
 			isa = PBXGroup;
 			children = (
-				04CC78162B96AFED007FD5D1 /* ScreenTimeApp.swift */,
+				046203A42C22CDC200AB6BD9 /* Extensions */,
 				04AB49DC2CEAB17000A78463 /* Helpers */,
 				046203A22C22CDAA00AB6BD9 /* Resources */,
-				046203A42C22CDC200AB6BD9 /* Extensions */,
+				04CC78162B96AFED007FD5D1 /* App.swift */,
 			);
 			path = ScreenTimeTracker;
 			sourceTree = "<group>";
@@ -154,8 +154,8 @@
 		04CC78292B96B150007FD5D1 /* ScreenTimeReport */ = {
 			isa = PBXGroup;
 			children = (
-				04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */,
 				046203A32C22CDB300AB6BD9 /* Resources */,
+				04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */,
 			);
 			path = ScreenTimeReport;
 			sourceTree = "<group>";
@@ -207,7 +207,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					04CC78122B96AFED007FD5D1 = {
 						CreatedOnToolsVersion = 15.2;
@@ -264,7 +264,7 @@
 				04AB4A182CEAC76100A78463 /* Date.swift in Sources */,
 				04642B452BF3ACA4009D0998 /* DeviceActivityReport.swift in Sources */,
 				04AB4A152CEAB26D00A78463 /* Int.swift in Sources */,
-				04CC78172B96AFED007FD5D1 /* ScreenTimeApp.swift in Sources */,
+				04CC78172B96AFED007FD5D1 /* App.swift in Sources */,
 				04642B502BF3C37A009D0998 /* Array.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +329,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -392,6 +393,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -422,7 +424,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Screen Time";
@@ -457,7 +458,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Screen Time";
@@ -489,7 +489,6 @@
 				CODE_SIGN_ENTITLEMENTS = ScreenTimeReport/Resources/ScreenTimeReport.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScreenTimeReport/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimeReport;
@@ -516,7 +515,6 @@
 				CODE_SIGN_ENTITLEMENTS = ScreenTimeReport/Resources/ScreenTimeReport.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4CQW4CFFYT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScreenTimeReport/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimeReport;

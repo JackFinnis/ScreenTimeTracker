@@ -9,6 +9,8 @@ import SwiftUI
 import DeviceActivity
 import FamilyControls
 
+// Screen time by hour of day not app
+
 @main
 struct ScreenTimeApp: App {
     var body: some Scene {
