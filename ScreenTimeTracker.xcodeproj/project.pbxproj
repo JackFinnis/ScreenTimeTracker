@@ -19,7 +19,7 @@
 		04AB4A162CEAB26D00A78463 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB4A142CEAB26C00A78463 /* Int.swift */; };
 		04AB4A182CEAC76100A78463 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB4A172CEAC76000A78463 /* Date.swift */; };
 		04AB4A192CEAC76100A78463 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB4A172CEAC76000A78463 /* Date.swift */; };
-		04BFF0262CB13664001E61BF /* ScreenTimeReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */; };
+		04BFF0262CB13664001E61BF /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0252CB13664001E61BF /* Report.swift */; };
 		04CC78172B96AFED007FD5D1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78162B96AFED007FD5D1 /* App.swift */; };
 		04CC781B2B96AFEE007FD5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */; };
 		04CC78342B96B150007FD5D1 /* ScreenTimeReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 04CC78282B96B150007FD5D1 /* ScreenTimeReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -55,7 +55,7 @@
 		04AB4A112CEAB18500A78463 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		04AB4A142CEAB26C00A78463 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		04AB4A172CEAC76000A78463 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeReport.swift; sourceTree = "<group>"; };
+		04BFF0252CB13664001E61BF /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		04CC78132B96AFED007FD5D1 /* ScreenTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CC78162B96AFED007FD5D1 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				046203A32C22CDB300AB6BD9 /* Resources */,
-				04BFF0252CB13664001E61BF /* ScreenTimeReport.swift */,
+				04BFF0252CB13664001E61BF /* Report.swift */,
 			);
 			path = ScreenTimeReport;
 			sourceTree = "<group>";
@@ -278,7 +278,7 @@
 				04AB4A192CEAC76100A78463 /* Date.swift in Sources */,
 				04642B3D2BF3AB68009D0998 /* DeviceActivityReport.swift in Sources */,
 				04AB4A162CEAB26D00A78463 /* Int.swift in Sources */,
-				04BFF0262CB13664001E61BF /* ScreenTimeReport.swift in Sources */,
+				04BFF0262CB13664001E61BF /* Report.swift in Sources */,
 				04642B512BF3C389009D0998 /* Array.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

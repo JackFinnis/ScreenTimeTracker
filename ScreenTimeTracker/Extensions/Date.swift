@@ -33,6 +33,10 @@ extension Date {
     }
     
     var dayInitial: String {
-        formatted(Date.FormatStyle().weekday())
+        if self > Calendar.current.date(byAdding: .day, value: -7, to: .startOfToday)! {
+            return formatted(Date.FormatStyle().weekday())
+        } else {
+            return formatted(Date.FormatStyle().weekday().day())
+        }
     }
 }
