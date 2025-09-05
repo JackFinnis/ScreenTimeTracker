@@ -8,6 +8,7 @@
 import SwiftUI
 import DeviceActivity
 import FamilyControls
+import StoreKit
 
 // Screen time by hour of day not app
 
@@ -38,6 +39,7 @@ enum Device: String, CaseIterable {
 }
 
 struct RootView: View {
+    @Environment(\.requestReview) var requestReview
     @AppState("productiveActivities") var productiveActivities = FamilyActivitySelection(includeEntireCategory: true)
     @State var showActivityPicker = false
     @State var weeksAgo = 0
@@ -47,8 +49,8 @@ struct RootView: View {
         let end = Calendar.current.date(byAdding: .day, value: weeksAgo * -7, to: .now)!
         let start = Calendar.current.date(byAdding: .day, value: -6, to: end)!
         var title: String {
-            let end = end.formatted(Date.FormatStyle().day().month())
-            let start = start.formatted(Date.FormatStyle().day().month())
+            let end = end.formatted(Date.FormatStyle().weekday().day().month())
+            let start = start.formatted(Date.FormatStyle().weekday().day().month())
             return "\(start) to \(end)"
         }
         
@@ -61,7 +63,20 @@ struct RootView: View {
                 )
             )
             .ignoresSafeArea(edges: .bottom)
+            .navigationTitle("Screen Time")
             .navigationBarTitleDisplayMode(.inline)
+            .contentMargins(.top, 5)
+            .toolbarTitleMenu {
+                Button {
+                    requestReview()
+                } label: {
+                    Label("Rate Screen Time", systemImage: "star")
+                }
+                Link(destination: URL(string: "mailto:jack@jackfinnis.com?subject=Screen%20TimeFeedback")!) {
+                    Label("Improve Screen Time", systemImage: "envelope")
+                }
+            }
+            .toolbarBackground(.visible, for: .bottomBar)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Menu(device.rawValue) {
@@ -72,38 +87,36 @@ struct RootView: View {
                         }
                     }
                 }
-                ToolbarItem(placement: .principal) {
-                    HStack(spacing: 0) {
-                        Button {
-                            if weeksAgo < 3 {
-                                weeksAgo += 1
-                            }
-                        } label: {
-                            Image(systemName: "chevron.left")
-                        }
-                        .disabled(weeksAgo == 3)
-                        .fixedSize()
-                        
-                        Text(title)
-                            .frame(width: 150)
-                            .monospacedDigit()
-                        
-                        Button {
-                            if weeksAgo > 0 {
-                                weeksAgo -= 1
-                            }
-                        } label: {
-                            Image(systemName: "chevron.right")
-                        }
-                        .disabled(weeksAgo == 0)
-                        .fixedSize()
-                    }
-                    .font(.headline)
-                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Edit") {
                         showActivityPicker = true
                     }
+                }
+                ToolbarItem(placement: .bottomBar) {
+                    Button {
+                        if weeksAgo < 3 {
+                            weeksAgo += 1
+                        }
+                    } label: {
+                        Image(systemName: "chevron.left")
+                    }
+                    .disabled(weeksAgo == 3)
+                    .font(.headline)
+                }
+                ToolbarItem(placement: .status) {
+                    Text(title)
+                        .monospacedDigit()
+                }
+                ToolbarItem(placement: .bottomBar) {
+                    Button {
+                        if weeksAgo > 0 {
+                            weeksAgo -= 1
+                        }
+                    } label: {
+                        Image(systemName: "chevron.right")
+                    }
+                    .disabled(weeksAgo == 0)
+                    .font(.headline)
                 }
             }
             .background {
