@@ -51,7 +51,7 @@ struct RootView: View {
         var title: String {
             let end = end.formatted(Date.FormatStyle().weekday().day().month())
             let start = start.formatted(Date.FormatStyle().weekday().day().month())
-            return "\(start) to \(end)"
+            return "\(start) - \(end)"
         }
         
         NavigationStack {
@@ -103,9 +103,18 @@ struct RootView: View {
                     .disabled(weeksAgo == 3)
                     .font(.headline)
                 }
-                ToolbarItem(placement: .status) {
-                    Text(title)
-                        .monospacedDigit()
+                if #available(iOS 26, *) {
+                    ToolbarItem(placement: .status) {
+                        Text(title)
+                            .fixedSize()
+                            .monospacedDigit()
+                    }
+                    .sharedBackgroundVisibility(.hidden)
+                } else {
+                    ToolbarItem(placement: .status) {
+                        Text(title)
+                            .monospacedDigit()
+                    }
                 }
                 ToolbarItem(placement: .bottomBar) {
                     Button {
