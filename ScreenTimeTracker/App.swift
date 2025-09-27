@@ -118,19 +118,12 @@ struct RootView: View {
                     .disabled(weeksAgo == 3)
                     .font(.headline)
                 }
-                if #available(iOS 26, *) {
-                    ToolbarItem(placement: .status) {
-                        Text(title)
-                            .fixedSize()
-                            .monospacedDigit()
-                    }
-                    .sharedBackgroundVisibility(.hidden)
-                } else {
-                    ToolbarItem(placement: .status) {
-                        Text(title)
-                            .monospacedDigit()
-                    }
+                ToolbarItem(placement: .status) {
+                    Text(title)
+                        .fixedSize()
+                        .monospacedDigit()
                 }
+                .sharedBackgroundVisibility(.hidden)
                 ToolbarItem(placement: .bottomBar) {
                     Button {
                         if weeksAgo > 0 {
