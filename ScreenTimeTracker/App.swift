@@ -36,6 +36,17 @@ enum Device: String, CaseIterable {
             return .mac
         }
     }
+    
+    var systemImage: String {
+        switch self {
+        case .iPhone:
+            return "iphone"
+        case .iPad:
+            return "ipad"
+        case .mac:
+            return "macbook"
+        }
+    }
 }
 
 struct RootView: View {
@@ -79,17 +90,21 @@ struct RootView: View {
             .toolbarBackground(.visible, for: .bottomBar)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Menu(device.rawValue) {
+                    Menu {
                         Picker("Device", selection: $device) {
                             ForEach(Device.allCases, id: \.self) { device in
-                                Text(device.rawValue)
+                                Label(device.rawValue, systemImage: device.systemImage)
                             }
                         }
+                    } label: {
+                        Label(device.rawValue, systemImage: device.systemImage)
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Edit") {
+                    Button {
                         showActivityPicker = true
+                    } label: {
+                        Label("Select Productive Apps", systemImage: "checklist")
                     }
                 }
                 ToolbarItem(placement: .bottomBar) {
