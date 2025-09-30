@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 @propertyWrapper
 struct AppState<T: Codable>: DynamicProperty {
     @AppStorage var data: Data
