@@ -12,8 +12,8 @@ import SwiftUI
 struct AppState<T: Codable>: DynamicProperty {
     @AppStorage var data: Data
     
-    init(wrappedValue: T, _ key: String) {
-        _data = .init(wrappedValue: try! JSONEncoder().encode(wrappedValue), key, store: .shared)
+    init(wrappedValue: T, _ key: Key) {
+        _data = .init(wrappedValue: try! JSONEncoder().encode(wrappedValue), key.rawValue, store: .shared)
     }
     
     var wrappedValue: T {
@@ -26,5 +26,9 @@ struct AppState<T: Codable>: DynamicProperty {
             get: { wrappedValue },
             set: { wrappedValue = $0 }
         )
+    }
+    
+    enum Key: String {
+        case productiveActivities
     }
 }

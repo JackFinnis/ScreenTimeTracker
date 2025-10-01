@@ -51,7 +51,7 @@ enum Device: String, CaseIterable {
 
 struct RootView: View {
     @Environment(\.requestReview) var requestReview
-    @AppState("productiveActivities") var productiveActivities = FamilyActivitySelection(includeEntireCategory: true)
+    @AppState(.productiveActivities) var productiveActivities = FamilyActivitySelection(includeEntireCategory: true)
     @State var showActivityPicker = false
     @State var weeksAgo = 0
     @State var device: Device = .iPhone

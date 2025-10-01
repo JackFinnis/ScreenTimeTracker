@@ -84,7 +84,7 @@ struct ActivityReportWrapper: View {
 struct ActivityReportView: View {
     let days: [Day]
     
-    @AppState("productiveActivities") var productiveActivities = FamilyActivitySelection(includeEntireCategory: true)
+    @AppState(.productiveActivities) var productiveActivities = FamilyActivitySelection(includeEntireCategory: true)
     @State var selectedDay: Day?
     
     func isProductive(_ app: App) -> Bool {
