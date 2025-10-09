@@ -64,6 +64,7 @@
 		04CC78312B96B150007FD5D1 /* ScreenTimeReport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenTimeReport.entitlements; sourceTree = "<group>"; };
 		04CC78392B96B167007FD5D1 /* DeviceActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityReport.swift; sourceTree = "<group>"; };
 		04CC783C2B98893D007FD5D1 /* ScreenTimeTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenTimeTracker.entitlements; sourceTree = "<group>"; };
+		04E2EC282E978ED200C262E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +88,7 @@
 		046203A22C22CDAA00AB6BD9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				04E2EC282E978ED200C262E5 /* Info.plist */,
 				04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */,
 				04CC783C2B98893D007FD5D1 /* ScreenTimeTracker.entitlements */,
 			);
@@ -428,6 +430,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimeTracker/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Screen Time";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -464,6 +467,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimeTracker/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Screen Time";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
