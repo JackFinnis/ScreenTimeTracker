@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "2600"
-   wasCreatedForAppExtension = "YES"
-   version = "2.0">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
@@ -16,24 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "04CC78272B96B150007FD5D1"
-               BuildableName = "ScreenTimeReport.appex"
-               BlueprintName = "ScreenTimeReport"
-               ReferencedContainer = "container:ScreenTimeTracker.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "04CC78122B96AFED007FD5D1"
-               BuildableName = "ScreenTimeTracker.app"
-               BlueprintName = "ScreenTimeTracker"
-               ReferencedContainer = "container:ScreenTimeTracker.xcodeproj">
+               BuildableName = "ScreenTime.app"
+               BlueprintName = "ScreenTime"
+               ReferencedContainer = "container:ScreenTime.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,24 +32,22 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      askForAppToLaunch = "Yes"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      launchAutomaticallySubstyle = "2">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04CC78122B96AFED007FD5D1"
-            BuildableName = "ScreenTimeTracker.app"
-            BlueprintName = "ScreenTimeTracker"
-            ReferencedContainer = "container:ScreenTimeTracker.xcodeproj">
+            BuildableName = "ScreenTime.app"
+            BlueprintName = "ScreenTime"
+            ReferencedContainer = "container:ScreenTime.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -73,17 +56,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES"
-      askForAppToLaunch = "Yes"
-      launchAutomaticallySubstyle = "2">
+      debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04CC78122B96AFED007FD5D1"
-            BuildableName = "ScreenTimeTracker.app"
-            BlueprintName = "ScreenTimeTracker"
-            ReferencedContainer = "container:ScreenTimeTracker.xcodeproj">
+            BuildableName = "ScreenTime.app"
+            BlueprintName = "ScreenTime"
+            ReferencedContainer = "container:ScreenTime.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

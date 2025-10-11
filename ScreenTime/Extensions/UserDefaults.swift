@@ -8,6 +8,7 @@
 import Foundation
 
 extension UserDefaults {
-    @MainActor
-    static let shared = UserDefaults(suiteName: "group.com.jackfinnis.ScreenTimeTracker")!
+    static var shared: UserDefaults {
+        UserDefaults(suiteName: "group.com.jackfinnis.ScreenTimeTracker")!
+    }
 }

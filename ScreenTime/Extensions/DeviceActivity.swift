@@ -6,7 +6,11 @@
 //
 
 import SwiftUI
-import DeviceActivity
+@preconcurrency import DeviceActivity
+
+extension DeviceActivityName {
+    static let snooze = Self("snooze")
+}
 
 extension DeviceActivityReport.Context {
     static let activity = Self("activity")
