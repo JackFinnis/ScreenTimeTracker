@@ -81,8 +81,8 @@ struct RootView: View {
                 }
             }
         }
-        .familyActivityPicker(headerText: "Select Productive Apps", isPresented: $showProductivePicker, selection: $productiveActivities)
-        .familyActivityPicker(headerText: "Select Blocked Apps", isPresented: $showBlockedPicker, selection: $blockedActivities)
+        .familyActivityPicker(headerText: "Choose Productive Apps", isPresented: $showProductivePicker, selection: $productiveActivities)
+        .familyActivityPicker(headerText: "Choose Blocked Apps", isPresented: $showBlockedPicker, selection: $blockedActivities)
         .sensoryFeedback(.impact, trigger: productiveActivities)
         .sensoryFeedback(.impact, trigger: blockedActivities)
         .onChange(of: productiveActivities) { _, productiveActivities in
