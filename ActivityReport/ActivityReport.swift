@@ -15,14 +15,12 @@ import ManagedSettings
 struct ActivityReport: DeviceActivityReportExtension {
     var body: some DeviceActivityReportScene {
         ActivityReportScene { report in
-            ActivityReportWrapper(report: report)
+            ActivityReportView(report: report)
         }
     }
 }
 
 struct Report {
-    let model: DeviceActivityData.Device.Model
-    let date: Date
     let days: [Day]
 }
 
@@ -34,9 +32,10 @@ struct Day: Identifiable, Equatable {
 
 struct Activity: Identifiable, Equatable {
     let id: String
-    let type: ActivityType
     let name: String
     let duration: Double
+    let appToken: ApplicationToken?
+    let webToken: WebDomainToken?
 }
 
 extension Array where Element == Activity {
@@ -45,18 +44,31 @@ extension Array where Element == Activity {
     }
 }
 
+func getActivityType(_ activity: Activity, productive: FamilyActivitySelection, blocked: FamilyActivitySelection) -> ActivityType {
+    if let appToken = activity.appToken {
+        if blocked.applicationTokens.contains(appToken) {
+            return .blocked
+        } else if productive.applicationTokens.contains(appToken) {
+            return .productive
+        }
+    } else if let webToken = activity.webToken {
+        if blocked.webDomainTokens.contains(webToken) {
+            return .blocked
+        } else if productive.webDomainTokens.contains(webToken) {
+            return .productive
+        }
+    }
+    return .unproductive
+}
+
 struct ActivityReportScene: DeviceActivityReportScene {
-    let content: (Report) -> ActivityReportWrapper
+    let content: (Report) -> ActivityReportView
     
     let context: DeviceActivityReport.Context = .activity
-    let productiveActivities: FamilyActivitySelection = FileStore.get(key: .productiveActivities) ?? .init()
-    let blockedActivities: FamilyActivitySelection = FileStore.get(key: .blockedActivities) ?? .init()
     
     func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> Report {
         var days: [Day] = []
-        var model: DeviceActivityData.Device.Model = .iPhone
         for await activity in data {
-            model = activity.device.model
             for await segment in activity.activitySegments {
                 var activities: [Activity] = []
                 
@@ -66,65 +78,43 @@ struct ActivityReportScene: DeviceActivityReportScene {
                               let name = app.application.localizedDisplayName,
                               let bundleID = app.application.bundleIdentifier
                         else { continue }
-                        let type: ActivityType
-                        if blockedActivities.applicationTokens.contains(token) {
-                            type = .blocked
-                        } else if productiveActivities.applicationTokens.contains(token) || bundleID.starts(with: "com.jackfinnis") {
-                            type = .productive
-                        } else {
-                            type = .unproductive
-                        }
-                        activities.append(Activity(id: bundleID, type: type, name: name, duration: app.totalActivityDuration))
+                        activities.append(Activity(id: bundleID, name: name, duration: app.totalActivityDuration, appToken: token, webToken: nil))
                     }
                     for await web in category.webDomains {
                         guard let token = web.webDomain.token,
                               let domain = web.webDomain.domain
                         else { continue }
-                        let type: ActivityType
-                        if blockedActivities.webDomainTokens.contains(token) {
-                            type = .blocked
-                        } else if productiveActivities.webDomainTokens.contains(token) || domain == "jackfinnis.com" {
-                            type = .productive
-                        } else {
-                            type = .unproductive
-                        }
-                        activities.append(Activity(id: domain, type: type, name: domain, duration: web.totalActivityDuration))
+                        activities.append(Activity(id: domain, name: domain, duration: web.totalActivityDuration, appToken: nil, webToken: token))
                     }
                 }
                 
                 days.append(Day(interval: segment.dateInterval, activities: activities))
             }
         }
-        let date = days.first?.interval.start ?? .now
-        return Report(model: model, date: date, days: days)
-    }
-}
-
-struct ActivityReportWrapper: View {
-    let report: Report
-    
-    var body: some View {
-        ActivityReportView(days: report.days)
-            .id(report.model)
-            .id(report.date)
+        return Report(days: days)
     }
 }
 
 struct ActivityReportView: View {
-    let days: [Day]
+    let report: Report
     
-    @State var selectedDay: Day?
+    @State var selectedDate: Date? = .now
     
     var body: some View {
+        let days = report.days
+        let productiveActivities: FamilyActivitySelection = FileStore.get(key: .productiveActivities) ?? .init()
+        let blockedActivities: FamilyActivitySelection = FileStore.get(key: .blockedActivities) ?? .init()
+        
         VStack(spacing: 0) {
             Chart {
                 ForEach(days) { day in
                     ForEach(ActivityType.allCases, id: \.self) { type in
+                        let activities = day.activities.filter { getActivityType($0, productive: productiveActivities, blocked: blockedActivities) == type }
                         BarMark(
                             x: .value("Day", day.interval.start, unit: .day),
-                            y: .value("Duration", day.activities.filter { $0.type == type }.totalDuration)
+                            y: .value("Duration", activities.totalDuration)
                         )
-                        .foregroundStyle(type.color.opacity(day == selectedDay ? 1 : 0.5))
+                        .foregroundStyle(type.color.opacity(day.interval.start == selectedDate?.startOfDay ? 1 : 0.5))
                     }
                 }
             }
@@ -155,17 +145,16 @@ struct ActivityReportView: View {
                 )
             )
             .chartXSelection(value: .init {
-                selectedDay?.interval.start
+                selectedDate
             } set: { date in
                 if let date {
-                    selectedDay = days.first { $0.interval.contains(date) }
+                    selectedDate = date
                 }
             })
-            .padding(.top, 5)
             .padding(.horizontal)
             .frame(height: 250)
             
-            if let selectedDay {
+            if let selectedDate, let selectedDay = days.first(where: { $0.interval.contains(selectedDate) }) {
                 let maxActivity = selectedDay.activities.map(\.duration).max() ?? 1
                 
                 HStack {
@@ -180,7 +169,7 @@ struct ActivityReportView: View {
                 List {
                     ForEach(ActivityType.allCases, id: \.self) { type in
                         let activities = selectedDay.activities
-                            .filter { $0.type == type && $0.duration > 60 }
+                            .filter { getActivityType($0, productive: productiveActivities, blocked: blockedActivities) == type && $0.duration > 60 }
                             .sorted(using: SortDescriptor(\.duration, order: .reverse))
                         if activities.isNotEmpty {
                             Section {
@@ -190,9 +179,9 @@ struct ActivityReportView: View {
                                         .listRowBackground(
                                             GeometryReader { geo in
                                                 HStack(spacing: 0) {
-                                                    activity.type.color.opacity(0.5)
+                                                    type.color.opacity(0.5)
                                                         .frame(width: geo.size.width * activity.duration / maxActivity)
-                                                    Rectangle().fill(.background)
+                                                    Rectangle().fill(Color(.secondarySystemGroupedBackground))
                                                 }
                                             }
                                         )
@@ -215,9 +204,6 @@ struct ActivityReportView: View {
             } else {
                 Spacer()
             }
-        }
-        .onAppear {
-            selectedDay = days.last
         }
     }
 }

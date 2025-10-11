@@ -9,13 +9,14 @@ import Foundation
 import ManagedSettings
 import DeviceActivity
 import FamilyControls
+import UIKit
 
 class ShieldHandler: ShieldActionDelegate {
     func handle(action: ShieldAction, completionHandler: @escaping (ShieldActionResponse) -> Void) {
         switch action {
-        case .secondaryButtonPressed:
+        case .primaryButtonPressed:
             let schedule = DeviceActivitySchedule(
-                intervalStart: Date.now.addingTimeInterval(-15 * 60).timeComponents,
+                intervalStart: Date.now.addingTimeInterval(-oneHour).timeComponents,
                 intervalEnd: Date.now.addingTimeInterval(60).timeComponents,
                 repeats: false
             )

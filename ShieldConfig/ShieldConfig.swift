@@ -7,7 +7,7 @@
 
 import ManagedSettings
 import ManagedSettingsUI
-import UIKit
+import SwiftUI
 
 class ShieldConfig: ShieldConfigurationDataSource {
     func getShield(id: String?, name: String?) -> ShieldConfiguration {
@@ -15,11 +15,11 @@ class ShieldConfig: ShieldConfigurationDataSource {
             backgroundBlurStyle: nil,
             backgroundColor: nil,
             icon: nil,
-            title: .init(text: "", color: .label),
-            subtitle: .init(text: "", color: .label),
-            primaryButtonLabel: .init(text: name.map { "Close \($0)" } ?? "Close", color: .white),
-            primaryButtonBackgroundColor: nil,
-            secondaryButtonLabel: .init(text: "One More Minute", color: .tintColor)
+            title: .init(text: "Time's up!", color: .label),
+            subtitle: .init(text: name.map { "You blocked \($0)" } ?? "", color: .label),
+            primaryButtonLabel: .init(text: "One More Minute 😭", color: .white),
+            primaryButtonBackgroundColor: .red,
+            secondaryButtonLabel: .init(text: "Close 🥳", color: .label)
         )
     }
     

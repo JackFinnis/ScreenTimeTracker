@@ -41,12 +41,7 @@ struct RootView: View {
                     )
                 )
             )
-            .id(productiveActivities.applicationTokens)
-            .id(productiveActivities.webDomainTokens)
-            .id(blockedActivities.applicationTokens)
-            .id(blockedActivities.webDomainTokens)
             .ignoresSafeArea(edges: .bottom)
-            .contentMargins(.top, 5)
             .background {
                 ProgressView()
                     .controlSize(.large)
@@ -95,6 +90,7 @@ struct RootView: View {
         .task {
             do {
                 try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
+                ActivityMonitor().reset()
             } catch {
                 print(error)
             }
