@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0441C9D62EA0421D007B4243 /* ScreenTime.icon in Resources */ = {isa = PBXBuildFile; fileRef = 0441C9D52EA0421D007B4243 /* ScreenTime.icon */; };
 		04642B3D2BF3AB68009D0998 /* DeviceActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78392B96B167007FD5D1 /* DeviceActivity.swift */; };
 		04642B452BF3ACA4009D0998 /* DeviceActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78392B96B167007FD5D1 /* DeviceActivity.swift */; };
 		04642B502BF3C37A009D0998 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04642B4F2BF3C37A009D0998 /* Array.swift */; };
@@ -120,6 +121,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0441C9D52EA0421D007B4243 /* ScreenTime.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = ScreenTime.icon; sourceTree = "<group>"; };
 		04642B4F2BF3C37A009D0998 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		04AB49D92CEAB14B00A78463 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		04AB4A142CEAB26C00A78463 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		046203A22C22CDAA00AB6BD9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0441C9D52EA0421D007B4243 /* ScreenTime.icon */,
 				04E2EC282E978ED200C262E5 /* Info.plist */,
 				04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */,
 				04CC783C2B98893D007FD5D1 /* Entitlements.entitlements */,
@@ -494,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04CC781B2B96AFEE007FD5D1 /* Assets.xcassets in Resources */,
+				0441C9D62EA0421D007B4243 /* ScreenTime.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,7 +919,7 @@
 		04CC78222B96AFEE007FD5D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = ScreenTime;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ScreenTime/Resources/Entitlements.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -952,7 +956,7 @@
 		04CC78232B96AFEE007FD5D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = ScreenTime;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ScreenTime/Resources/Entitlements.entitlements;
 				CODE_SIGN_STYLE = Automatic;
