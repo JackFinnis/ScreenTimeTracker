@@ -152,6 +152,7 @@ struct ActivityReportView: View {
                 }
             })
             .padding(.horizontal)
+            .padding(.top, 5)
             .frame(height: 250)
             
             if let selectedDate, let selectedDay = days.first(where: { $0.interval.contains(selectedDate) }) {
