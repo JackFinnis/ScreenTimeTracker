@@ -23,6 +23,8 @@ struct ScreenTimeApp: App {
 
 struct RootView: View {
     @Environment(\.requestReview) var requestReview
+    @Environment(\.scenePhase) var scenePhase
+    @AppStorage("featuresUsed") var featuresUsed = 0
     @State var productiveActivities = FileStore.get(key: .productiveActivities) ?? FamilyActivitySelection(includeEntireCategory: true)
     @State var blockedActivities = FileStore.get(key: .blockedActivities) ?? FamilyActivitySelection(includeEntireCategory: true)
     @State var showProductivePicker = false
@@ -93,6 +95,18 @@ struct RootView: View {
                 ActivityMonitor().reset()
             } catch {
                 print(error)
+            }
+        }
+        .onChange(of: scenePhase) { _, _ in
+            switch scenePhase {
+            case .active:
+                featuresUsed += 1
+            default: break
+            }
+        }
+        .onChange(of: featuresUsed) { _, _ in
+            if featuresUsed.isMultiple(of: 10) {
+                requestReview()
             }
         }
     }
