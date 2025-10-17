@@ -59,10 +59,10 @@ struct RootView: View {
                     Button {
                         requestReview()
                     } label: {
-                        Label("Rate This App", systemImage: "star")
+                        Label("Rate Screen Time", systemImage: "star")
                     }
                     Link(destination: URL(string: "https://apps.apple.com/app/id6738397686?action=write-review")!) {
-                        Label("Leave a Review", systemImage: "quote.bubble")
+                        Label("Write a Review", systemImage: "quote.bubble")
                     }
                     Link(destination: URL(string: "mailto:jack@jackfinnis.com?subject=Screen%20Time%20Feedback")!) {
                         Label("Send Feedback", systemImage: "envelope")
