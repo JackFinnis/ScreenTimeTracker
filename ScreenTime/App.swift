@@ -22,6 +22,7 @@ struct ScreenTimeApp: App {
 }
 
 struct RootView: View {
+    @Environment(\.openURL) var openURL
     @Environment(\.requestReview) var requestReview
     @Environment(\.scenePhase) var scenePhase
     @AppStorage("featuresUsed") var featuresUsed = 0
@@ -51,13 +52,21 @@ struct RootView: View {
             .navigationTitle("Screen Time")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarTitleMenu {
-                Button {
-                    requestReview()
-                } label: {
-                    Label("Rate Screen Time", systemImage: "star")
-                }
-                Link(destination: URL(string: "mailto:jack@jackfinnis.com?subject=Screen%20TimeFeedback")!) {
-                    Label("Improve Screen Time", systemImage: "envelope")
+                Section("Screen Time") {
+                    Button {
+                        requestReview()
+                    } label: {
+                        Label("Rate This App", systemImage: "star")
+                    }
+                    Link(destination: URL(string: "https://apps.apple.com/app/id6738397686?action=write-review")!) {
+                        Label("Leave a Review", systemImage: "quote.bubble")
+                    }
+                    Link(destination: URL(string: "mailto:jack@jackfinnis.com?subject=Screen%20Time%20Feedback")!) {
+                        Label("Send Feedback", systemImage: "envelope")
+                    }
+                    Link(destination: URL(string: "https://apps.apple.com/developer/1633101066")!) {
+                        Label("More Apps by Jack", systemImage: "square.grid.2x2")
+                    }
                 }
             }
             .toolbarBackground(.visible, for: .bottomBar)
