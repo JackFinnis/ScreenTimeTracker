@@ -22,7 +22,6 @@ struct ScreenTimeApp: App {
 }
 
 struct RootView: View {
-    @Environment(\.openURL) var openURL
     @Environment(\.requestReview) var requestReview
     @Environment(\.scenePhase) var scenePhase
     @AppStorage("featuresUsed") var featuresUsed = 0
@@ -32,6 +31,9 @@ struct RootView: View {
     @State var showBlockedPicker = false
     
     var body: some View {
+        let productive = productiveActivities.applications.count + productiveActivities.webDomains.count
+        let blocked = blockedActivities.applications.count + blockedActivities.webDomains.count
+        
         NavigationStack {
             DeviceActivityReport(
                 .activity,
@@ -50,6 +52,7 @@ struct RootView: View {
                     .controlSize(.large)
             }
             .navigationTitle("Screen Time")
+            .navigationSubtitle("\(productive) Productive • \(blocked) Blocked")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarTitleMenu {
                 Section("Screen Time") {
