@@ -76,12 +76,12 @@ struct RootView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Menu("Edit") {
-                        Section("Mark apps or websites as productive to help you decrease your unproductive screen time.") {
+                        Section("Mark apps as productive to help you identify your unproductive screen time.") {
                             Button("Choose Productive Apps") {
                                 showProductivePicker = true
                             }
                         }
-                        Section("Block apps or websites that you want to stop using completely.") {
+                        Section("Block apps and websites that you want to stop using completely.") {
                             Button("Choose Blocked Apps") {
                                 showBlockedPicker = true
                             }
