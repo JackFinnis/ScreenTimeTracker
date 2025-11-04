@@ -81,10 +81,11 @@ struct RootView: View {
                                 showProductivePicker = true
                             }
                         }
-                        Section("Block apps and websites that you want to stop using completely.") {
+                        Section("Block apps and websites that you want to stop using completely. You can still use them for 1 minute at a time. Blocked apps can't be changed from 10pm to 7pm.") {
                             Button("Choose Blocked Apps") {
                                 showBlockedPicker = true
                             }
+                            .disabled(Date.now[.hour] >= 22 || Date.now[.hour] < 7)
                         }
                     }
                 }
@@ -104,7 +105,6 @@ struct RootView: View {
         .task {
             do {
                 try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
-                ActivityMonitor().reset()
             } catch {
                 print(error)
             }
@@ -113,11 +113,12 @@ struct RootView: View {
             switch scenePhase {
             case .active:
                 featuresUsed += 1
+                ActivityMonitor().reset()
             default: break
             }
         }
         .onChange(of: featuresUsed) { _, _ in
-            if featuresUsed.isMultiple(of: 10) {
+            if featuresUsed.isMultiple(of: 20) {
                 requestReview()
             }
         }

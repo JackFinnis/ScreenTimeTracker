@@ -11,15 +11,16 @@ import SwiftUI
 
 class ShieldConfig: ShieldConfigurationDataSource {
     func getShield(id: String?, name: String?) -> ShieldConfiguration {
+        guard let name else { return .init() }
         return .init(
             backgroundBlurStyle: nil,
-            backgroundColor: nil,
+            backgroundColor: .systemBackground,
             icon: nil,
-            title: .init(text: "Time's up!", color: .label),
-            subtitle: .init(text: name.map { "You blocked \($0)" } ?? "", color: .label),
-            primaryButtonLabel: .init(text: "One More Minute 😭", color: .white),
-            primaryButtonBackgroundColor: .red,
-            secondaryButtonLabel: .init(text: "Close 🥳", color: .label)
+            title: .init(text: "Time's Up!", color: .label),
+            subtitle: .init(text: "You blocked \(name.replacingOccurrences(of: "www.", with: ""))", color: .label),
+            primaryButtonLabel: .init(text: "Close 🥳", color: .systemBackground),
+            primaryButtonBackgroundColor: nil,
+            secondaryButtonLabel: .init(text: "1 More Minute 😭", color: .red)
         )
     }
     

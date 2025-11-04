@@ -14,7 +14,7 @@ import UIKit
 class ShieldHandler: ShieldActionDelegate {
     func handle(action: ShieldAction, completionHandler: @escaping (ShieldActionResponse) -> Void) {
         switch action {
-        case .primaryButtonPressed:
+        case .secondaryButtonPressed:
             let schedule = DeviceActivitySchedule(
                 intervalStart: Date.now.addingTimeInterval(-oneHour).timeComponents,
                 intervalEnd: Date.now.addingTimeInterval(60).timeComponents,

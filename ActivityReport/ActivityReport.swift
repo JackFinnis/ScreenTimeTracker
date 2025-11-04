@@ -202,6 +202,7 @@ struct ActivityReportView: View {
                     }
                 }
                 .contentMargins(.top, 10)
+                .id(selectedDate)
             } else {
                 Spacer()
             }
