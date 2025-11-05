@@ -31,8 +31,8 @@ struct RootView: View {
     @State var showBlockedPicker = false
     
     var body: some View {
-        let productive = productiveActivities.applications.count + productiveActivities.webDomains.count
-        let blocked = blockedActivities.applications.count + blockedActivities.webDomains.count
+        let productiveCount = productiveActivities.applications.count + productiveActivities.webDomains.count
+        let blockedCount = blockedActivities.applications.count + blockedActivities.webDomains.count
         
         NavigationStack {
             DeviceActivityReport(
@@ -52,7 +52,6 @@ struct RootView: View {
                     .controlSize(.large)
             }
             .navigationTitle("Screen Time")
-            .navigationSubtitle("\(productive) Productive • \(blocked) Blocked")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarTitleMenu {
                 Section("Screen Time") {
@@ -77,13 +76,19 @@ struct RootView: View {
                 ToolbarItem(placement: .primaryAction) {
                     Menu("Edit") {
                         Section("Mark apps as productive to help you identify your unproductive screen time.") {
-                            Button("Choose Productive Apps") {
+                            Button {
                                 showProductivePicker = true
+                            } label: {
+                                Text("Edit Productive Apps")
+                                Text("\(productiveActivities.applications.count.formatted(singular: "App")), \(productiveActivities.webDomains.count.formatted(singular: "Website"))")
                             }
                         }
-                        Section("Block apps and websites that you want to stop using completely. You can still use them for 1 minute at a time. Blocked apps can't be changed from 10pm to 7pm.") {
-                            Button("Choose Blocked Apps") {
+                        Section("Block apps you want to stop using completely. Blocked apps can't be edited from 10pm to 7am.") {
+                            Button {
                                 showBlockedPicker = true
+                            } label: {
+                                Text("Edit Blocked Apps")
+                                Text("\(blockedActivities.applications.count.formatted(singular: "App")), \(blockedActivities.webDomains.count.formatted(singular: "Website"))")
                             }
                             .disabled(Date.now[.hour] >= 22 || Date.now[.hour] < 7)
                         }
