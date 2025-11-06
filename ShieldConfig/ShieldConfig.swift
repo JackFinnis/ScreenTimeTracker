@@ -18,9 +18,9 @@ class ShieldConfig: ShieldConfigurationDataSource {
             icon: nil,
             title: .init(text: "Time's Up!", color: .label),
             subtitle: .init(text: "You blocked \(name.replacingOccurrences(of: "www.", with: ""))", color: .label),
-            primaryButtonLabel: .init(text: "Close 🥳", color: .systemBackground),
+            primaryButtonLabel: .init(text: "Close", color: .systemBackground),
             primaryButtonBackgroundColor: nil,
-            secondaryButtonLabel: .init(text: "1 More Minute 😭", color: .red)
+            secondaryButtonLabel: .init(text: "1 more minute 😭", color: .red)
         )
     }
     
