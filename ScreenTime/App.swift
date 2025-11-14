@@ -11,6 +11,7 @@ import FamilyControls
 import StoreKit
 
 // Screen time by hour of day not app
+// Mon-Sun weekly average of unproductive and blocked apps
 
 @main
 struct ScreenTimeApp: App {
