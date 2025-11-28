@@ -74,25 +74,33 @@ struct RootView: View {
             }
             .toolbarBackground(.visible, for: .bottomBar)
             .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Menu("Edit") {
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu {
+                        Section("Block apps you want to stop using completely. Blocked apps can't be edited from 10pm to 8am.") {
+                            Button {
+                                showBlockedPicker = true
+                            } label: {
+                                Text("Choose Blocked Apps")
+                                Text("\(blockedActivities.applications.count.formatted(singular: "App")), \(blockedActivities.webDomains.count.formatted(singular: "Website"))")
+                            }
+                            .disabled(Date.now[.hour] >= 22 || Date.now[.hour] < 8)
+                        }
+                    } label: {
+                        Label("Block Apps", systemImage: "nosign")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
                         Section("Mark apps as productive to help you identify your unproductive screen time.") {
                             Button {
                                 showProductivePicker = true
                             } label: {
-                                Text("Edit Productive Apps")
+                                Text("Choose Productive Apps")
                                 Text("\(productiveActivities.applications.count.formatted(singular: "App")), \(productiveActivities.webDomains.count.formatted(singular: "Website"))")
                             }
                         }
-                        Section("Block apps you want to stop using completely. Blocked apps can't be edited from 10pm to 7am.") {
-                            Button {
-                                showBlockedPicker = true
-                            } label: {
-                                Text("Edit Blocked Apps")
-                                Text("\(blockedActivities.applications.count.formatted(singular: "App")), \(blockedActivities.webDomains.count.formatted(singular: "Website"))")
-                            }
-                            .disabled(Date.now[.hour] >= 22 || Date.now[.hour] < 7)
-                        }
+                    } label: {
+                        Label("Filter Screen Time", systemImage: "line.3.horizontal.decrease")
                     }
                 }
             }
