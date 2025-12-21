@@ -32,9 +32,6 @@ struct RootView: View {
     @State var showBlockedPicker = false
     
     var body: some View {
-        let productiveCount = productiveActivities.applications.count + productiveActivities.webDomains.count
-        let blockedCount = blockedActivities.applications.count + blockedActivities.webDomains.count
-        
         NavigationStack {
             DeviceActivityReport(
                 .activity,
@@ -83,7 +80,7 @@ struct RootView: View {
                                 Text("Choose Blocked Apps")
                                 Text("\(blockedActivities.applications.count.formatted(singular: "App")), \(blockedActivities.webDomains.count.formatted(singular: "Website"))")
                             }
-                            .disabled(Date.now[.hour] >= 22 || Date.now[.hour] < 8)
+                            .disabled(Date.now.isNight)
                         }
                     } label: {
                         Label("Block Apps", systemImage: "nosign")

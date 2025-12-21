@@ -26,4 +26,8 @@ extension Date {
     var startOfDay: Date {
         Calendar.current.startOfDay(for: self)
     }
+    
+    var isNight: Bool {
+        self[.hour] >= 22 || self[.hour] < 8
+    }
 }

@@ -70,6 +70,8 @@ struct ActivityReportScene: DeviceActivityReportScene {
         var days: [Day] = []
         for await activity in data {
             for await segment in activity.activitySegments {
+                guard segment.dateInterval.start == segment.dateInterval.start.startOfDay else { continue }
+                
                 var activities: [Activity] = []
                 
                 for await category in segment.categories {
