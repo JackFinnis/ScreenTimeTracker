@@ -12,6 +12,9 @@ import StoreKit
 
 // Screen time by hour of day not app
 // Mon-Sun weekly average of unproductive and blocked apps
+// "dont use chat software for longer than 30 minutes per week"
+// weekly total minutes
+// disclosure sections for 3 types
 
 @main
 struct ScreenTimeApp: App {
