@@ -57,7 +57,6 @@
 		04BB03CD2E9A7F8F00444C68 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB03C82E9A7F8C00444C68 /* Double.swift */; };
 		04BB03D02E9A812100444C68 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB03CF2E9A812100444C68 /* Device.swift */; };
 		04BFF0262CB13664001E61BF /* ActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0252CB13664001E61BF /* ActivityReport.swift */; };
-		04CC78172B96AFED007FD5D1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC78162B96AFED007FD5D1 /* App.swift */; };
 		04CC781B2B96AFEE007FD5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */; };
 		04CC78342B96B150007FD5D1 /* ActivityReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 04CC78282B96B150007FD5D1 /* ActivityReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -137,7 +136,6 @@
 		04BB03CF2E9A812100444C68 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		04BFF0252CB13664001E61BF /* ActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityReport.swift; sourceTree = "<group>"; };
 		04CC78132B96AFED007FD5D1 /* ScreenTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		04CC78162B96AFED007FD5D1 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04CC78282B96B150007FD5D1 /* ActivityReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = ActivityReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CC78302B96B150007FD5D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -179,6 +177,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		04159BCB2F5CDBB300752ADC /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 		04BB03742E9A6C1700444C68 /* ActivityMonitor */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (04BB03BB2E9A6ED500444C68 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 04BB037C2E9A6C1700444C68 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ActivityMonitor; sourceTree = "<group>"; };
 		04BB03882E9A6C2400444C68 /* ShieldHandler */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (04BB03902E9A6C2400444C68 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ShieldHandler; sourceTree = "<group>"; };
 		04BB039C2E9A6C2E00444C68 /* ShieldConfig */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (04BB03A42E9A6C2E00444C68 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ShieldConfig; sourceTree = "<group>"; };
@@ -298,7 +297,7 @@
 				046203A42C22CDC200AB6BD9 /* Extensions */,
 				046203A22C22CDAA00AB6BD9 /* Resources */,
 				04BB03CE2E9A811600444C68 /* Models */,
-				04CC78162B96AFED007FD5D1 /* App.swift */,
+				04159BCB2F5CDBB300752ADC /* Views */,
 			);
 			path = ScreenTime;
 			sourceTree = "<group>";
@@ -398,6 +397,9 @@
 				04BB037A2E9A6C1700444C68 /* PBXTargetDependency */,
 				04BB038E2E9A6C2400444C68 /* PBXTargetDependency */,
 				04BB03A22E9A6C2E00444C68 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				04159BCB2F5CDBB300752ADC /* Views */,
 			);
 			name = ScreenTime;
 			productName = ScreenTimeTracker;
@@ -568,7 +570,6 @@
 				04AB4A152CEAB26D00A78463 /* Int.swift in Sources */,
 				04BB03BD2E9A6FD500444C68 /* ActivityType.swift in Sources */,
 				04BB03C52E9A7EC900444C68 /* Collection.swift in Sources */,
-				04CC78172B96AFED007FD5D1 /* App.swift in Sources */,
 				04642B502BF3C37A009D0998 /* Array.swift in Sources */,
 				04BB03CD2E9A7F8F00444C68 /* Double.swift in Sources */,
 				04BB03682E9A694C00444C68 /* URL.swift in Sources */,

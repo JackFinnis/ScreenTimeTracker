@@ -1,8 +1,8 @@
 //
-//  ScreenTimeApp.swift
+//  ContentView.swift
 //  ScreenTime
 //
-//  Created by Jack Finnis on 05/03/2024.
+//  Created by Jack Finnis on 07/03/2026.
 //
 
 import SwiftUI
@@ -10,22 +10,7 @@ import DeviceActivity
 import FamilyControls
 import StoreKit
 
-// Screen time by hour of day not app
-// Mon-Sun weekly average of unproductive and blocked apps
-// "dont use chat software for longer than 30 minutes per week"
-// weekly total minutes
-// disclosure sections for 3 types
-
-@main
-struct ScreenTimeApp: App {
-    var body: some Scene {
-        WindowGroup {
-            RootView()
-        }
-    }
-}
-
-struct RootView: View {
+struct ContentView: View {
     @Environment(\.requestReview) var requestReview
     @Environment(\.scenePhase) var scenePhase
     @AppStorage("featuresUsed") var featuresUsed = 0
