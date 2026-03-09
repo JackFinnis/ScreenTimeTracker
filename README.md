@@ -3,3 +3,7 @@
 We all use our phones too much. Decrease the time you spend on unproductive apps and block distracting websites.
 
 https://jackfinnis.com/apps/screen-time
+
+## Acknowledgements
+
+- [Flaticon](https://www.flaticon.com/free-icon/hour-glass_8832604)
