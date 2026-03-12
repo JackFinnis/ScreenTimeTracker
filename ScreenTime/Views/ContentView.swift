@@ -18,7 +18,8 @@ struct ContentView: View {
     @State var blockedActivities = FileStore.get(key: .blockedActivities) ?? FamilyActivitySelection(includeEntireCategory: true)
     @State var showProductivePicker = false
     @State var showBlockedPicker = false
-    
+    @State var showShareSheet = false
+
     var body: some View {
         NavigationStack {
             DeviceActivityReport(
@@ -42,18 +43,21 @@ struct ContentView: View {
             .toolbarTitleMenu {
                 Section("Screen Time") {
                     Button {
-                        requestReview()
+                        showShareSheet = true
                     } label: {
-                        Label("Rate Screen Time", systemImage: "star")
+                        Label("Share", systemImage: "square.and.arrow.up")
                     }
-                    Link(destination: URL(string: "https://apps.apple.com/app/id6738397686?action=write-review")!) {
-                        Label("Write a Review", systemImage: "quote.bubble")
+                    Link(destination: URL(string: "https://jackfinnis.com/apps/screen-time")!) {
+                        Label("Get Help", systemImage: "questionmark.circle")
                     }
                     Link(destination: URL(string: "mailto:jack@jackfinnis.com?subject=Screen%20Time%20Feedback")!) {
                         Label("Send Feedback", systemImage: "envelope")
                     }
+                    Link(destination: URL(string: "https://apps.apple.com/app/id6738397686?action=write-review")!) {
+                        Label("Write a Review", systemImage: "star")
+                    }
                     Link(destination: URL(string: "https://apps.apple.com/developer/1633101066")!) {
-                        Label("More Apps by Jack", systemImage: "square.grid.2x2")
+                        Label("More Apps", systemImage: "square.grid.2x2")
                     }
                 }
             }
@@ -90,6 +94,10 @@ struct ContentView: View {
                 }
             }
         }
+        .sheet(isPresented: $showShareSheet) {
+            ShareSheet(items: [URL(string: "https://apps.apple.com/app/id6738397686")!])
+                .presentationDetents([.medium])
+        }
         .familyActivityPicker(headerText: "Choose Productive Apps", isPresented: $showProductivePicker, selection: $productiveActivities)
         .familyActivityPicker(headerText: "Choose Blocked Apps", isPresented: $showBlockedPicker, selection: $blockedActivities)
         .sensoryFeedback(.impact, trigger: productiveActivities)
@@ -122,4 +130,14 @@ struct ContentView: View {
             }
         }
     }
+}
+
+struct ShareSheet: UIViewControllerRepresentable {
+    let items: [Any]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: items, applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ vc: UIActivityViewController, context: Context) {}
 }
