@@ -59,6 +59,7 @@
 		04BFF0262CB13664001E61BF /* ActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0252CB13664001E61BF /* ActivityReport.swift */; };
 		04CC781B2B96AFEE007FD5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */; };
 		04CC78342B96B150007FD5D1 /* ActivityReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 04CC78282B96B150007FD5D1 /* ActivityReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		62046EC8D4254775A4AE088E /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 426A45CCABCB4B1BA9730A82 /* TelemetryDeck */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,7 +189,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
+				62046EC8D4254775A4AE088E /* TelemetryDeck in Frameworks */,
+						);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		04BB03822E9A6C2400444C68 /* Frameworks */ = {
@@ -331,6 +333,8 @@
 			);
 			name = ActivityMonitor;
 			packageProductDependencies = (
+
+				426A45CCABCB4B1BA9730A82 /* TelemetryDeck */,
 			);
 			productName = ActivityMonitor;
 			productReference = 04BB03702E9A6C1600444C68 /* ActivityMonitor.appex */;
@@ -459,6 +463,9 @@
 				Base,
 			);
 			mainGroup = 04CC780A2B96AFED007FD5D1;
+				packageReferences = (
+				E55F8B2AE8764E588849D165 /* XCRemoteSwiftPackageReference "SwiftSDK" */,
+				);
 			productRefGroup = 04CC78142B96AFED007FD5D1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1111,6 +1118,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E55F8B2AE8764E588849D165 /* XCRemoteSwiftPackageReference "SwiftSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/SwiftSDK.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		426A45CCABCB4B1BA9730A82 /* TelemetryDeck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E55F8B2AE8764E588849D165 /* XCRemoteSwiftPackageReference "SwiftSDK" */;
+			productName = TelemetryDeck;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 04CC780B2B96AFED007FD5D1 /* Project object */;
 }

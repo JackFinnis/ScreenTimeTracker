@@ -9,9 +9,15 @@ import SwiftUI
 import DeviceActivity
 import FamilyControls
 import StoreKit
+import TelemetryDeck
 
 @main
 struct ScreenTimeApp: App {
+    init() {
+        let config = TelemetryDeck.Config(appID: "78E87044-7382-4F56-93EE-A878201B0C8E")
+        TelemetryDeck.initialize(config: config)
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
