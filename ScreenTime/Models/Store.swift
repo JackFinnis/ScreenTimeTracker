@@ -43,6 +43,7 @@ struct FileStore {
     enum Key: String {
         case productiveActivities
         case blockedActivities
+        case bannedActivities
     }
     
     static func get<T: Codable>(key: Key) -> T? {

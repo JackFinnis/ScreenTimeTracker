@@ -59,6 +59,7 @@
 		04BFF0262CB13664001E61BF /* ActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFF0252CB13664001E61BF /* ActivityReport.swift */; };
 		04CC781B2B96AFEE007FD5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CC781A2B96AFEE007FD5D1 /* Assets.xcassets */; };
 		04CC78342B96B150007FD5D1 /* ActivityReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 04CC78282B96B150007FD5D1 /* ActivityReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		04F01E812F83C32900B95A5E /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 04F01E802F83C32900B95A5E /* TelemetryDeck */; };
 		62046EC8D4254775A4AE088E /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 426A45CCABCB4B1BA9730A82 /* TelemetryDeck */; };
 /* End PBXBuildFile section */
 
@@ -190,7 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62046EC8D4254775A4AE088E /* TelemetryDeck in Frameworks */,
-						);
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		04BB03822E9A6C2400444C68 /* Frameworks */ = {
@@ -211,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04F01E812F83C32900B95A5E /* TelemetryDeck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +279,7 @@
 				04BB03742E9A6C1700444C68 /* ActivityMonitor */,
 				04BB039C2E9A6C2E00444C68 /* ShieldConfig */,
 				04BB03882E9A6C2400444C68 /* ShieldHandler */,
+				04F01E7F2F83C32900B95A5E /* Frameworks */,
 				04CC78142B96AFED007FD5D1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -313,6 +316,13 @@
 			path = ActivityReport;
 			sourceTree = "<group>";
 		};
+		04F01E7F2F83C32900B95A5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -333,7 +343,6 @@
 			);
 			name = ActivityMonitor;
 			packageProductDependencies = (
-
 				426A45CCABCB4B1BA9730A82 /* TelemetryDeck */,
 			);
 			productName = ActivityMonitor;
@@ -463,9 +472,9 @@
 				Base,
 			);
 			mainGroup = 04CC780A2B96AFED007FD5D1;
-				packageReferences = (
+			packageReferences = (
 				E55F8B2AE8764E588849D165 /* XCRemoteSwiftPackageReference "SwiftSDK" */,
-				);
+			);
 			productRefGroup = 04CC78142B96AFED007FD5D1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1131,6 +1140,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		04F01E802F83C32900B95A5E /* TelemetryDeck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E55F8B2AE8764E588849D165 /* XCRemoteSwiftPackageReference "SwiftSDK" */;
+			productName = TelemetryDeck;
+		};
 		426A45CCABCB4B1BA9730A82 /* TelemetryDeck */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E55F8B2AE8764E588849D165 /* XCRemoteSwiftPackageReference "SwiftSDK" */;

@@ -16,8 +16,10 @@ struct ContentView: View {
     @AppStorage("featuresUsed") var featuresUsed = 0
     @State var productiveActivities = FileStore.get(key: .productiveActivities) ?? FamilyActivitySelection(includeEntireCategory: true)
     @State var blockedActivities = FileStore.get(key: .blockedActivities) ?? FamilyActivitySelection(includeEntireCategory: true)
+    @State var bannedActivities = FileStore.get(key: .bannedActivities) ?? FamilyActivitySelection(includeEntireCategory: true)
     @State var showProductivePicker = false
     @State var showBlockedPicker = false
+    @State var showBannedPicker = false
     @State var showShareSheet = false
 
     var body: some View {
@@ -63,21 +65,6 @@ struct ContentView: View {
             }
             .toolbarBackground(.visible, for: .bottomBar)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Menu {
-                        Section("Block apps you want to stop using completely. Blocked apps can't be edited from 10pm to 8am.") {
-                            Button {
-                                showBlockedPicker = true
-                            } label: {
-                                Text("Choose Blocked Apps")
-                                Text("\(blockedActivities.applications.count.formatted(singular: "App")), \(blockedActivities.webDomains.count.formatted(singular: "Website"))")
-                            }
-                            .disabled(Date.now.isNight)
-                        }
-                    } label: {
-                        Label("Block Apps", systemImage: "nosign")
-                    }
-                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
                         Section("Mark apps as productive to help you identify your unproductive screen time.") {
@@ -87,6 +74,24 @@ struct ContentView: View {
                                 Text("Choose Productive Apps")
                                 Text("\(productiveActivities.applications.count.formatted(singular: "App")), \(productiveActivities.webDomains.count.formatted(singular: "Website"))")
                             }
+                        }
+                        Section("Restrict apps you want to stop using. Restricted apps can't be edited from 10pm to 8am.") {
+                            Button {
+                                showBlockedPicker = true
+                            } label: {
+                                Text("Choose Restricted Apps")
+                                Text("\(blockedActivities.applications.count.formatted(singular: "App")), \(blockedActivities.webDomains.count.formatted(singular: "Website"))")
+                            }
+                            .disabled(Date.now.isNight)
+                        }
+                        Section("Block apps to completely block them at all times. Blocked apps can't be edited from 10pm to 8am.") {
+                            Button {
+                                showBannedPicker = true
+                            } label: {
+                                Text("Choose Blocked Apps")
+                                Text("\(bannedActivities.applications.count.formatted(singular: "App")), \(bannedActivities.webDomains.count.formatted(singular: "Website"))")
+                            }
+                            .disabled(Date.now.isNight)
                         }
                     } label: {
                         Label("Filter Screen Time", systemImage: "line.3.horizontal.decrease")
@@ -99,15 +104,21 @@ struct ContentView: View {
                 .presentationDetents([.medium])
         }
         .familyActivityPicker(headerText: "Choose Productive Apps", isPresented: $showProductivePicker, selection: $productiveActivities)
-        .familyActivityPicker(headerText: "Choose Blocked Apps", isPresented: $showBlockedPicker, selection: $blockedActivities)
+        .familyActivityPicker(headerText: "Choose Restricted Apps", isPresented: $showBlockedPicker, selection: $blockedActivities)
+        .familyActivityPicker(headerText: "Choose Blocked Apps", isPresented: $showBannedPicker, selection: $bannedActivities)
         .sensoryFeedback(.impact, trigger: productiveActivities)
         .sensoryFeedback(.impact, trigger: blockedActivities)
+        .sensoryFeedback(.impact, trigger: bannedActivities)
         .onChange(of: productiveActivities) { _, productiveActivities in
             FileStore.set(key: .productiveActivities, value: productiveActivities)
         }
         .onChange(of: blockedActivities) { _, blockedActivities in
             FileStore.set(key: .blockedActivities, value: blockedActivities)
             ActivityMonitor().blockActivities()
+        }
+        .onChange(of: bannedActivities) { _, bannedActivities in
+            FileStore.set(key: .bannedActivities, value: bannedActivities)
+            ActivityMonitor().banActivities()
         }
         .task {
             do {
