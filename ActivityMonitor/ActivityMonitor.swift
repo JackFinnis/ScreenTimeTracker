@@ -48,6 +48,7 @@ class ActivityMonitor: DeviceActivityMonitor {
     }
 
     func reset() {
+        ManagedSettingsStore().clearAllSettings()
         blockActivities()
         banActivities()
         activityCenter.stopMonitoring()
