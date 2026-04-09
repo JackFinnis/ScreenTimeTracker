@@ -44,19 +44,15 @@ extension Array where Element == Activity {
     }
 }
 
-func getActivityType(_ activity: Activity, productive: FamilyActivitySelection, blocked: FamilyActivitySelection, banned: FamilyActivitySelection) -> ActivityType {
+func getActivityType(_ activity: Activity, productive: FamilyActivitySelection, blocked: FamilyActivitySelection) -> ActivityType {
     if let appToken = activity.appToken {
-        if banned.applicationTokens.contains(appToken) {
-            return .banned
-        } else if blocked.applicationTokens.contains(appToken) {
+        if blocked.applicationTokens.contains(appToken) {
             return .blocked
         } else if productive.applicationTokens.contains(appToken) {
             return .productive
         }
     } else if let webToken = activity.webToken {
-        if banned.webDomainTokens.contains(webToken) {
-            return .banned
-        } else if blocked.webDomainTokens.contains(webToken) {
+        if blocked.webDomainTokens.contains(webToken) {
             return .blocked
         } else if productive.webDomainTokens.contains(webToken) {
             return .productive
@@ -110,13 +106,12 @@ struct ActivityReportView: View {
         let days = report.days
         let productiveActivities: FamilyActivitySelection = FileStore.get(key: .productiveActivities) ?? .init()
         let blockedActivities: FamilyActivitySelection = FileStore.get(key: .blockedActivities) ?? .init()
-        let bannedActivities: FamilyActivitySelection = FileStore.get(key: .bannedActivities) ?? .init()
         
         VStack(spacing: 0) {
             Chart {
                 ForEach(days) { day in
                     ForEach(ActivityType.allCases, id: \.self) { type in
-                        let activities = day.activities.filter { getActivityType($0, productive: productiveActivities, blocked: blockedActivities, banned: bannedActivities) == type }
+                        let activities = day.activities.filter { getActivityType($0, productive: productiveActivities, blocked: blockedActivities) == type }
                         BarMark(
                             x: .value("Day", day.interval.start, unit: .day),
                             y: .value("Duration", activities.totalDuration)
@@ -177,7 +172,7 @@ struct ActivityReportView: View {
                 List {
                     ForEach(ActivityType.allCases, id: \.self) { type in
                         let activities = selectedDay.activities
-                            .filter { getActivityType($0, productive: productiveActivities, blocked: blockedActivities, banned: bannedActivities) == type && $0.duration > 60 }
+                            .filter { getActivityType($0, productive: productiveActivities, blocked: blockedActivities) == type && $0.duration > 60 }
                             .sorted(using: SortDescriptor(\.duration, order: .reverse))
                         if activities.isNotEmpty {
                             Section {
@@ -214,5 +209,6 @@ struct ActivityReportView: View {
                 Spacer()
             }
         }
+        .background(.background)
     }
 }

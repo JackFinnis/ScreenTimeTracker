@@ -10,14 +10,8 @@ import DeviceActivity
 import FamilyControls
 import Foundation
 
-extension ManagedSettingsStore.Name {
-    static let blocked = Self("blocked")
-    static let banned = Self("banned")
-}
-
 class ActivityMonitor: DeviceActivityMonitor {
-    let blockedSettings = ManagedSettingsStore(named: .blocked)
-    let bannedSettings = ManagedSettingsStore(named: .banned)
+    let settings = ManagedSettingsStore()
     let activityCenter = DeviceActivityCenter()
 
     override func intervalDidStart(for activity: DeviceActivityName) {
@@ -31,26 +25,18 @@ class ActivityMonitor: DeviceActivityMonitor {
     }
 
     func unblockActivities() {
-        blockedSettings.shield.applications = nil
-        blockedSettings.shield.webDomains = nil
+        settings.shield.applications = nil
+        settings.shield.webDomains = nil
     }
 
     func blockActivities() {
         guard let blockedActivities: FamilyActivitySelection = FileStore.get(key: .blockedActivities) else { return }
-        blockedSettings.shield.applications = blockedActivities.applicationTokens
-        blockedSettings.shield.webDomains = blockedActivities.webDomainTokens
-    }
-
-    func banActivities() {
-        guard let bannedActivities: FamilyActivitySelection = FileStore.get(key: .bannedActivities) else { return }
-        bannedSettings.shield.applications = bannedActivities.applicationTokens
-        bannedSettings.shield.webDomains = bannedActivities.webDomainTokens
+        settings.shield.applications = blockedActivities.applicationTokens
+        settings.shield.webDomains = blockedActivities.webDomainTokens
     }
 
     func reset() {
-        ManagedSettingsStore().clearAllSettings()
         blockActivities()
-        banActivities()
         activityCenter.stopMonitoring()
     }
 }
