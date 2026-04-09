@@ -100,7 +100,7 @@ struct ActivityReportScene: DeviceActivityReportScene {
 struct ActivityReportView: View {
     let report: Report
     
-    @State var selectedDate: Date? = .now
+    @State var selectedDate = Date.now
     
     var body: some View {
         let days = report.days
@@ -116,7 +116,7 @@ struct ActivityReportView: View {
                             x: .value("Day", day.interval.start, unit: .day),
                             y: .value("Duration", activities.totalDuration)
                         )
-                        .foregroundStyle(type.color.opacity(day.interval.start == selectedDate?.startOfDay ? 1 : 0.5))
+                        .foregroundStyle(type.color.opacity(day.interval.start == selectedDate.startOfDay ? 1 : 0.5))
                     }
                 }
             }
@@ -146,8 +146,8 @@ struct ActivityReportView: View {
                     majorAlignment: .matching(DateComponents(day: 1)),
                 )
             )
-            .chartXSelection(value: .init {
-                selectedDate
+            .chartXSelection(value: Binding {
+                selectedDate as Date?
             } set: { date in
                 if let date {
                     selectedDate = date
@@ -157,57 +157,73 @@ struct ActivityReportView: View {
             .padding(.top, 5)
             .frame(height: 250)
             
-            if let selectedDate, let selectedDay = days.first(where: { $0.interval.contains(selectedDate) }) {
-                let maxActivity = selectedDay.activities.map(\.duration).max() ?? 1
-                
-                HStack {
-                    Text(selectedDay.id.formatted(Date.FormatStyle().weekday().day().month()))
-                        .font(.headline)
-                    Spacer()
-                    Text(selectedDay.activities.totalDuration.formattedDuration)
-                        .foregroundStyle(.secondary)
-                }
-                .padding()
-                Divider()
-                List {
-                    ForEach(ActivityType.allCases, id: \.self) { type in
-                        let activities = selectedDay.activities
-                            .filter { getActivityType($0, productive: productiveActivities, blocked: blockedActivities) == type && $0.duration > 60 }
-                            .sorted(using: SortDescriptor(\.duration, order: .reverse))
-                        if activities.isNotEmpty {
-                            Section {
-                                ForEach(activities) { activity in
-                                    Text(activity.name)
-                                        .badge(activity.duration.formattedDuration)
-                                        .listRowBackground(
-                                            GeometryReader { geo in
-                                                HStack(spacing: 0) {
-                                                    type.color.opacity(0.5)
-                                                        .frame(width: geo.size.width * activity.duration / maxActivity)
-                                                    Rectangle().fill(Color(.secondarySystemGroupedBackground))
-                                                }
-                                            }
-                                        )
-                                }
-                            } header: {
-                                HStack {
-                                    Text(type.name)
-                                        .font(.headline)
-                                    Spacer()
-                                    Text(activities.totalDuration.formattedDuration)
-                                        .foregroundStyle(.secondary)
-                                }
-                                .font(.body)
+            ScrollView(.horizontal) {
+                LazyHStack(spacing: 0) {
+                    ForEach(days) { day in
+                        let maxActivity = day.activities.map(\.duration).max() ?? 1
+
+                        VStack(spacing: 0) {
+                            HStack {
+                                Text(day.id.formatted(Date.FormatStyle().weekday().day().month()))
+                                    .font(.headline)
+                                Spacer()
+                                Text(day.activities.totalDuration.formattedDuration)
+                                    .foregroundStyle(.secondary)
                             }
-                            .headerProminence(.increased)
+                            .padding()
+                            Divider()
+                            List {
+                                ForEach(ActivityType.allCases, id: \.self) { type in
+                                    let activities = day.activities
+                                        .filter { getActivityType($0, productive: productiveActivities, blocked: blockedActivities) == type && $0.duration > 60 }
+                                        .sorted(using: SortDescriptor(\.duration, order: .reverse))
+                                    if activities.isNotEmpty {
+                                        Section {
+                                            ForEach(activities) { activity in
+                                                Text(activity.name)
+                                                    .badge(activity.duration.formattedDuration)
+                                                    .listRowBackground(
+                                                        GeometryReader { geo in
+                                                            HStack(spacing: 0) {
+                                                                type.color.opacity(0.5)
+                                                                    .frame(width: geo.size.width * activity.duration / maxActivity)
+                                                                Rectangle().fill(Color(.secondarySystemGroupedBackground))
+                                                            }
+                                                        }
+                                                    )
+                                            }
+                                        } header: {
+                                            HStack {
+                                                Text(type.name)
+                                                    .font(.headline)
+                                                Spacer()
+                                                Text(activities.totalDuration.formattedDuration)
+                                                    .foregroundStyle(.secondary)
+                                            }
+                                            .font(.body)
+                                        }
+                                        .headerProminence(.increased)
+                                    }
+                                }
+                            }
+                            .listStyle(.plain)
+                            .contentMargins(.top, 10)
                         }
+                        .containerRelativeFrame(.horizontal)
+                        .id(day.id)
                     }
                 }
-                .contentMargins(.top, 10)
-                .id(selectedDate)
-            } else {
-                Spacer()
+                .scrollTargetLayout()
             }
+            .scrollIndicators(.hidden)
+            .scrollTargetBehavior(.paging)
+            .scrollPosition(id: Binding {
+                selectedDate.startOfDay as Date?
+            } set: { date in
+                if let date {
+                    selectedDate = date
+                }
+            })
         }
         .background(.background)
     }
