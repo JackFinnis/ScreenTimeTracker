@@ -26,6 +26,7 @@ struct ScreenTimeApp: App {
 }
 
 // meh
+// Check App Store Connect reviews
 // weekly total minutes
 // "dont use chat software for longer than 30 minutes per week"
 // disclosure sections for 3 types

@@ -19,6 +19,7 @@ struct ContentView: View {
     @State var showProductivePicker = false
     @State var showBlockedPicker = false
     @State var showShareSheet = false
+    @State var reportID = 0
 
     var body: some View {
         NavigationStack {
@@ -33,10 +34,16 @@ struct ContentView: View {
                     )
                 )
             )
+            .id(reportID)
             .ignoresSafeArea(edges: .bottom)
             .background {
-                ProgressView()
-                    .controlSize(.large)
+                VStack(spacing: 20) {
+                    ProgressView()
+                        .controlSize(.large)
+                    Button("Reload", systemImage: "arrow.clockwise") {
+                        reportID += 1
+                    }
+                }
             }
             .navigationTitle("Screen Time")
             .navigationBarTitleDisplayMode(.inline)
@@ -109,11 +116,13 @@ struct ContentView: View {
             } catch {
                 print(error)
             }
+            reportID += 1
         }
         .onChange(of: scenePhase) { _, _ in
             switch scenePhase {
             case .active:
                 featuresUsed += 1
+                reportID += 1
                 ActivityMonitor().reset()
             default: break
             }
