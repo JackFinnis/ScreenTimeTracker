@@ -25,7 +25,7 @@ struct ScreenTimeApp: App {
     }
 }
 
-// meh
+// currently it shows daily app usage, toggle to show weekly app usage
 // Check App Store Connect reviews
 // weekly total minutes
 // "dont use chat software for longer than 30 minutes per week"
