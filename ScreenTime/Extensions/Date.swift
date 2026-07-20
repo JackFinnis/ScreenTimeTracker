@@ -28,6 +28,6 @@ extension Date {
     }
     
     var isNight: Bool {
-        self[.hour] >= 21 || self[.hour] < 6
+        self[.hour] >= 22 || self[.hour] < 8
     }
 }
